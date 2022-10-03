@@ -234,5 +234,30 @@ main {
   font-weight: bold;
 }
 
+.main-search {
+  padding-bottom: 20px;
+}
+
+.main-search form {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+}
+
+.main-search-input {
+  border: 1px solid var(--grey);
+  border-radius: 3px;
+  width: 100%;
+  padding: 10px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.main-search-btn {
+  position: absolute;
+  top: 15px;
+  left: 40%;
+}
+
 
 
