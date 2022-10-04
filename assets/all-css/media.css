@@ -24,6 +24,7 @@
     padding: 10px 20px;
     border-bottom: 1px solid var(--grey);
     background: var(--white);
+    z-index: 1000;
   }
 
   .bar-menu-name {
@@ -124,7 +125,7 @@
   }
 }
 
-/* ========max-width: 415px ======== */
+/* ========max-width: 450px ======== */
 
 @media only screen and (max-width: 450px) {
 
@@ -179,5 +180,15 @@
 
   .settings-section-input {
     max-width: none;
+  }
+
+  .content-top-collage {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1px;
+}
+
+  .content-top-collage :nth-last-child(n+2) {
+    display: none;
   }
 }
