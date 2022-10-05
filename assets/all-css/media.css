@@ -31,7 +31,7 @@
     position: relative;
   }
 
-  .bar-menu-name h2 {
+  .menu-name-title {
     margin-right: 25px;
   }
 
@@ -41,7 +41,7 @@
     right: 0;
   }
 
-  .header-bar h1,
+  .header-bar-title,
   .header-bar-logo,
   .header-bar-search,
   .info-description-name,
@@ -87,16 +87,17 @@
   }
 
   .profile-central-line {
-    margin: 5px 0 5px 0;
+    margin: 5px 0;
     border-top: 0;
     border-bottom: solid 1px var(--grey);
   }
 
-  .central-line-text h3 {
+  .line-text-title {
     display: none;
   }
+
   .central-line-text {
-    margin: 0 0 -1px 0;
+    margin-bottom: -1px;
     padding: 0 0 5px 0;
     border-top: 0;
     border-bottom: 1px solid var(--black);
@@ -122,6 +123,11 @@
     justify-content: flex-start;
     max-width: 120px;
     text-align: left;
+  }
+
+  .settings-section-input,
+  .settings-section-textarea {
+    max-width: none;
   }
 }
 
@@ -176,10 +182,6 @@
     text-align: left;
     width: auto;
     margin-bottom: 5px;
-  }
-
-  .settings-section-input {
-    max-width: none;
   }
 
   .content-top-collage {

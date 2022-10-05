@@ -113,8 +113,8 @@ main {
 }
 
 
-.info-description-aside h3,
-.info-aside-mobile h3 {
+.description-aside-title,
+.aside-mobile-title {
   font-weight: bold;
 }
 
@@ -193,7 +193,7 @@ main {
   align-items: center;
 }
 
-.settings-section-control h2 {
+.section-control-title {
   margin-top: auto;
   text-align: left;
   width: 100%;
@@ -207,23 +207,27 @@ main {
   text-align: left;
 }
 
+/* max-width: 300px;
+width: 100%;
+
 .settings-section-input {
   max-width: 300px;
   display: flex;
   align-items: center;
   width: 100%;
-}
+} */
 
-.settings-section-input input,
-.settings-section-input textarea {
+.settings-section-input,
+.settings-section-textarea {
   border: 1px solid var(--grey);
+  max-width: 300px;
   width: 100%;
   border-radius: 3px;
   padding: 5px 5px;
   font-weight: bold;
 }
 
-.settings-section-input textarea {
+.settings-section-textarea {
   resize: none;
 }
 

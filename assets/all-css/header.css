@@ -1,0 +1,21 @@
+.header {
+  z-index: 1000;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, -0%);
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--grey);
+  background: var(--white);
+}
+
+.header-bar {
+  justify-content: space-between;
+  align-items: center;
+  max-width: 935px;
+}
+
+.header-bar-menu {
+  justify-content: space-between;
+  align-items: center;
+  max-width: 198px;
+}

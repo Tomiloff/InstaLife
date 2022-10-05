@@ -18,7 +18,7 @@
       <div class="header-bar flex">
         <form action="Profile-page.html">
           <button>
-            <h1>InstaLife</h1>
+            <h1 class="header-bar-title">InstaLife</h1>
           </button>
         </form>
         <div class="header-bar-menu flex">
@@ -27,7 +27,7 @@
             <path d="M21.2126 22H13.8863C13.5033 22 13.1681 21.6795 13.1681 21.3132V15.6816C13.1681 14.4912 12.2104 13.5754 10.9654 13.5754C9.72044 13.5754 8.76276 14.4912 8.76276 15.6816V21.3132C8.76276 21.6795 8.42757 22 8.0445 22H0.718259C0.335187 22 0 21.6795 0 21.3132V10.5536C0 10.3704 0.0957678 10.1873 0.191536 10.0499L10.4866 0.206035C10.7739 -0.0686785 11.2048 -0.0686785 11.4921 0.206035L21.7872 10.0499C21.9787 10.2331 22.0745 10.5536 21.9308 10.7825C21.9308 10.8283 21.883 10.8283 21.883 10.8741V21.3132C21.9308 21.6795 21.5956 22 21.2126 22ZM14.6046 20.6264H20.4943V10.7367L11.0133 1.67118L1.43652 10.8283V20.6264H7.32624V15.6816C7.32624 13.7128 8.90641 12.2019 10.9654 12.2019C13.0244 12.2019 14.6046 13.7128 14.6046 15.6816V20.6264Z" fill="#262626"/>
             </svg>
           </button>
-          <form action="User-search-page.html">
+          <form action="">
             <button>
               <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 2C6.701 2 2 6.701 2 12.5C2 18.299 6.701 23 12.5 23C15.397 23 18.018 21.828 19.919 19.93C21.824 18.028 23 15.402 23 12.5C23 6.701 18.299 2 12.5 2ZM0 12.5C0 5.596 5.596 0 12.5 0C19.404 0 25 5.596 25 12.5C25 15.594 23.875 18.427 22.013 20.609L27.706 26.292C28.097 26.682 28.098 27.316 27.708 27.706C27.318 28.097 26.684 28.098 26.294 27.708L20.598 22.023C18.417 23.879 15.589 25 12.5 25C5.596 25 0 19.404 0 12.5Z" fill="#262626"/>
@@ -75,63 +75,58 @@
       </button>
     </div>
     <main>
-      <form action="" class="profile-settings">
-        <div class="profile-settings-avatar flex">
-          <div class="settings-avatar-wrap flex">
-            <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="avatar-wrap-img">
+      <div class="main-search flex">
+        <form action="">
+          <input type="text" placeholder="login" class="main-search-input">
+          <button type="submit" class="main-search-btn">
+            <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
+              <path d="M8.4375 9C8.50781 9 8.57812 8.98682 8.64844 8.96045C8.71875 8.93408 8.78027 8.8916 8.83301 8.83301C8.94434 8.72168 9 8.58984 9 8.4375C9 8.28516 8.94434 8.15332 8.83301 8.04199L7.1543 6.36328C7.40625 6.0293 7.60254 5.66016 7.74316 5.25586C7.88379 4.85156 7.9541 4.42676 7.9541 3.98145C7.9541 3.43066 7.8501 2.91357 7.64209 2.43018C7.43408 1.94678 7.1499 1.5249 6.78955 1.16455C6.4292 0.804199 6.00732 0.52002 5.52393 0.312012C5.04053 0.104004 4.52637 0 3.98145 0C3.43066 0 2.91357 0.104004 2.43018 0.312012C1.94678 0.52002 1.5249 0.804199 1.16455 1.16455C0.804199 1.5249 0.52002 1.94678 0.312012 2.43018C0.104004 2.91357 0 3.43066 0 3.98145C0 4.52637 0.104004 5.04053 0.312012 5.52393C0.52002 6.00732 0.804199 6.4292 1.16455 6.78955C1.5249 7.1499 1.94678 7.43408 2.43018 7.64209C2.91357 7.8501 3.43066 7.9541 3.98145 7.9541C4.42676 7.9541 4.85156 7.88379 5.25586 7.74316C5.66016 7.60254 6.0293 7.40625 6.36328 7.1543L8.04199 8.83301C8.09473 8.8916 8.15625 8.93408 8.22656 8.96045C8.29688 8.98682 8.36719 9 8.4375 9ZM3.98145 6.8291C3.58301 6.8291 3.21094 6.75439 2.86523 6.60498C2.51953 6.45557 2.21777 6.25195 1.95996 5.99414C1.70215 5.73633 1.49854 5.43457 1.34912 5.08887C1.19971 4.74316 1.125 4.37402 1.125 3.98145C1.125 3.58301 1.19971 3.21094 1.34912 2.86523C1.49854 2.51953 1.70215 2.21777 1.95996 1.95996C2.21777 1.70215 2.51953 1.49854 2.86523 1.34912C3.21094 1.19971 3.58301 1.125 3.98145 1.125C4.37402 1.125 4.74316 1.19971 5.08887 1.34912C5.43457 1.49854 5.73633 1.70215 5.99414 1.95996C6.25195 2.21777 6.45557 2.51953 6.60498 2.86523C6.75439 3.21094 6.8291 3.58301 6.8291 3.98145C6.8291 4.37402 6.75439 4.74316 6.60498 5.08887C6.45557 5.43457 6.25195 5.73633 5.99414 5.99414C5.73633 6.25195 5.43457 6.45557 5.08887 6.60498C4.74316 6.75439 4.37402 6.8291 3.98145 6.8291Z" fill="#8F8F8F"/>
+            </svg>            
+          </button>
+        </form>
+      </div>
+      <div class="search-content-top">
+        <div class="content-top-collage">
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-12.jpg" alt="Фото-публикация">
           </div>
-          <div class="settings-section-control">
-            <h2>name</h2>
-            <button>Изменить фото профиля</button>
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-9.jpg" alt="Фото-публикация">
           </div>
-        </div>
-        <div class="profile-settings-section flex">
-          <label class="settings-section-item flex">Имя</label>
-          <div class="settings-section-input">
-            <input type="text" placeholder="Name Surname">
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-11.jpg" alt="Фото-публикация">
           </div>
-        </div>
-        <div class="profile-settings-section flex">
-          <label class="settings-section-item flex">Имя<br>пользователя</label>
-          <div class="settings-section-input">
-            <input type="text" placeholder="name">
-          </div>
-        </div>
-        <div class="profile-settings-section flex">
-          <label class="settings-section-item flex">Сайт</label>
-          <div class="settings-section-input">
-            <input type="text" placeholder="https://www...">
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-10.jpg" alt="Фото-публикация">
           </div>
         </div>
-        <div class="profile-settings-section flex">
-          <label class="settings-section-item flex">О себе</label>
-          <div class="settings-section-input">
-            <textarea name="" id="" maxlength="150" rows="6"></textarea>
+        <div class="content-top-column">
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-8.jpg" alt="Фото-публикация">
           </div>
         </div>
-        <div class="profile-settings-section flex">
-          <label class="settings-section-item flex">Эл. адрес</label>
-          <div class="settings-section-input">
-            <input type="text" placeholder="...@mail.ru">
+      </div>
+      <div class="search-content-bottom">
+        <div class="content-top-column">
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-7.jpg" alt="Фото-публикация">
           </div>
         </div>
-        <div class="profile-settings-section flex">
-          <label class="settings-section-item flex">Номер телефона</label>
-          <div class="settings-section-input">
-            <input type="text" placeholder="+7 ...">
+        <div class="content-top-collage">
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-15.jpg" alt="Фото-публикация">
+          </div>
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-13.jpg" alt="Фото-публикация">
+          </div>
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-16.jpg" alt="Фото-публикация">
+          </div>
+          <div class="search-content-wrap">
+            <img src="../assets/all-images/img-content-14.jpg" alt="Фото-публикация">
           </div>
         </div>
-        <div class="profile-settings-section flex">
-          <label class="settings-section-item flex">Пол</label>
-          <div class="settings-section-input">
-            <input type="text">
-          </div>
-        </div>
-        <div class="profile-settings-section flex">
-          <div class="settings-section-item flex"></div>
-          <button type="submit" class="item-btn-submit">Отправить</button>
-        </div>
-      </form>
+      </div>
     </main>
   </body>
 </html>
