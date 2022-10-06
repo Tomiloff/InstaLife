@@ -3,19 +3,3 @@
 @import "../../all-css/global-styles.css";
 @import "../../all-css/InstaLife.css";
 @import "../../all-css/media.css";
-
-/* Fonts */
-@font-face {
-  font-family: 'OpenSansLight';
-  src: url('../../all-fonts/OpenSansLight/OpenSansLight.eot');
-  src: url('../../all-fonts/OpenSansLight/OpenSansLight.eot') format('embedded-opentype'),
-       url('../../all-fonts/OpenSansLight/OpenSansLight.woff2') format('woff2'),
-       url('../../all-fonts/OpenSansLight/OpenSansLight.woff') format('woff'),
-       url('../../all-fonts/OpenSansLight/OpenSansLight.ttf') format('truetype'),
-       url('../../all-fonts/OpenSansLight/OpenSansLight.svg#OpenSansLight') format('svg');
-}
-
-@font-face {
-  font-family: 'PT-Serif_Italic';
-  src: url('../../all-fonts/PT-Serif_Italic/PT-Serif_Italic.ttf');
-}

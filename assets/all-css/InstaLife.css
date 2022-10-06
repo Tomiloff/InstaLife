@@ -110,6 +110,8 @@ main {
 .info-aside-mobile {
   max-width: 410px;
   line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
