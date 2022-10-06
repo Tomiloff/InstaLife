@@ -156,6 +156,16 @@ main {
   width: 100%;
 }
 
+.settings-avatar {
+  justify-content: flex-start;
+  max-width: 600px;
+  margin: 0 auto;
+  border-top: 1px solid var(--grey);
+  border-right: 1px solid var(--grey);
+  border-left: 1px solid var(--grey);
+  padding: 20px 0;
+}
+
 .profile-settings {
   max-width: 600px;
   margin: 0 auto;
@@ -164,10 +174,13 @@ main {
 }
 
 
-.profile-settings-avatar,
 .profile-settings-section {
   justify-content: flex-start;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.settings-section-bar {
+  position: relative;
 }
 
 .settings-avatar-wrap,
@@ -207,28 +220,50 @@ main {
   text-align: left;
 }
 
-/* max-width: 300px;
-width: 100%;
-
-.settings-section-input {
-  max-width: 300px;
-  display: flex;
-  align-items: center;
-  width: 100%;
-} */
-
 .settings-section-input,
 .settings-section-textarea {
   border: 1px solid var(--grey);
-  max-width: 300px;
   width: 100%;
   border-radius: 3px;
   padding: 5px 5px;
   font-weight: bold;
 }
 
+.settings-section-bar {
+  max-width: 300px;
+  width: 100%;
+}
+
 .settings-section-textarea {
   resize: none;
+}
+
+.settings-section-input:focus,
+.settings-section-textarea:focus {
+  border-color: var(--blue);
+}
+
+.settings-section-input:required:valid {
+  border-color: #55cf3f;
+}
+
+.form-error {
+  position: absolute;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: bold;
+  bottom: -44%;
+  left: 0%;
+	display: none;
+}
+
+input:invalid:not(:placeholder-shown) {
+  border-color: var(--red);
+}
+
+.settings-section-input:invalid:not(:placeholder-shown) + 
+.form-error {
+  display: block;
 }
 
 .item-btn-submit {

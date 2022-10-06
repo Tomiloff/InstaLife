@@ -110,7 +110,8 @@
     margin-bottom: 4px;
   }
 
-  .profile-settings {
+  .profile-settings,
+  .settings-avatar {
     border: none;
     padding-top: 0;
   }
@@ -125,8 +126,7 @@
     text-align: left;
   }
 
-  .settings-section-input,
-  .settings-section-textarea {
+  .settings-section-bar {
     max-width: none;
   }
 }
@@ -164,7 +164,7 @@
     font-size: 11px;
   }
 
-  .profile-settings-avatar {
+  .settings-avatar {
     justify-content: center;
   }
 
