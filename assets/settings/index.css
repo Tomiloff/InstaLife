@@ -14,14 +14,10 @@
   padding-top: 40px;
 }
 
-
 .profile-settings-section {
   justify-content: flex-start;
+  align-items: center;
   margin-bottom: 25px;
-}
-
-.settings-section-bar {
-  position: relative;
 }
 
 .settings-avatar-wrap,
@@ -32,7 +28,6 @@
   max-width: 150px;
   text-align: right;
   margin-right: 20px;
-  font-size: 15px;
 }
 
 .avatar-wrap-img {
@@ -89,12 +84,9 @@
 }
 
 .form-error {
-  position: absolute;
   color: var(--red);
   font-size: 12px;
   font-weight: bold;
-  bottom: -44%;
-  left: 0%;
 	display: none;
 }
 
