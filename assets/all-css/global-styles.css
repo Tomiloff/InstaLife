@@ -32,6 +32,13 @@ body {
   color: var(--black);
 }
 
+main {
+  width: 100%;
+  max-width: 975px;
+  padding: 70px 20px 40px 20px;
+  margin: 0 auto;
+}
+
 h1 {
   font-family: "PT-Serif_Italic";
   font-weight: bold;

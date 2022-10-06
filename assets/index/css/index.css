@@ -1,5 +1,11 @@
 /* Connectivity */
 @import "../../all-css/reset.css";
 @import "../../all-css/global-styles.css";
-@import "../../all-css/InstaLife.css";
-@import "../../all-css/media.css";
+
+@import "../../all-css/header.css";
+
+@import "../../profile/index.css";
+@import "../../settings/index.css";
+@import "../../Search-user/index.css";
+
+
