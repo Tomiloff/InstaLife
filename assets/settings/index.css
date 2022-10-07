@@ -17,7 +17,7 @@
 .profile-settings-section {
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 5px;
 }
 
 .settings-avatar-wrap,
@@ -28,10 +28,6 @@
   max-width: 150px;
   text-align: right;
   margin-right: 20px;
-}
-
-.settings-section-item {
-  height: 43px;
 }
 
 .avatar-wrap-img {
@@ -72,6 +68,7 @@
 .settings-section-bar {
   max-width: 300px;
   width: 100%;
+  padding-top: 15px;
 }
 
 .settings-section-textarea {
@@ -91,7 +88,7 @@
   color: var(--red);
   font-size: 12px;
   font-weight: bold;
-	display: none;
+  opacity: 0;
 }
 
 input:invalid:not(:placeholder-shown) {
@@ -99,8 +96,8 @@ input:invalid:not(:placeholder-shown) {
 }
 
 .settings-section-input:invalid:not(:placeholder-shown) + 
-.form-error {
-  display: block;
+.form-error  {
+  opacity: 1;
 }
 
 .item-btn-submit {
@@ -108,6 +105,7 @@ input:invalid:not(:placeholder-shown) {
   padding: 6px 12px;
   color: var(--white);
   font-weight: bold;
+  margin: 20px 0;
 }
 
 
@@ -124,6 +122,10 @@ input:invalid:not(:placeholder-shown) {
 
   .settings-avatar-wrap {
     max-width: 120px;
+  }
+
+  .profile-settings-section {
+    margin-bottom: 15px;
   }
 
   .settings-section-item {
@@ -160,6 +162,10 @@ input:invalid:not(:placeholder-shown) {
     text-align: left;
     width: auto;
     margin-bottom: 5px;
+  }
+
+  .settings-section-bar {
+    padding-top: 0;
   }
 
 }
