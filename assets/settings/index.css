@@ -30,6 +30,10 @@
   margin-right: 20px;
 }
 
+.settings-section-item {
+  height: 43px;
+}
+
 .avatar-wrap-img {
   max-width: 78px;
   width: 100%;
