@@ -1,0 +1,62 @@
+/* Fonts */
+@font-face {
+  font-family: 'OpenSansLight';
+  src: url('../all-fonts/OpenSansLight/OpenSansLight.eot');
+  src: url('../all-fonts/OpenSansLight/OpenSansLight.eot') format('embedded-opentype'),
+       url('../all-fonts/OpenSansLight/OpenSansLight.woff2') format('woff2'),
+       url('../all-fonts/OpenSansLight/OpenSansLight.woff') format('woff'),
+       url('../all-fonts/OpenSansLight/OpenSansLight.ttf') format('truetype'),
+       url('../all-fonts/OpenSansLight/OpenSansLight.svg#OpenSansLight') format('svg');
+}
+
+@font-face {
+  font-family: 'PT-Serif_Italic';
+  src: url('../all-fonts/PT-Serif_Italic/PT-Serif_Italic.ttf');
+}
+
+
+/* Colors */
+:root {
+  --blue: #4094EF;
+  --black: #262626;
+  --grey: #DBDBDB;
+  --white: #FFFFFF;
+  --red: #DC565B;
+}
+
+
+/* Global-css */
+body {
+  font-family: "OpenSansLight";
+  font-size: 14px;
+  color: var(--black);
+}
+
+main {
+  width: 100%;
+  max-width: 975px;
+  padding: 70px 20px 40px 20px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-family: "PT-Serif_Italic";
+  font-weight: bold;
+  font-size: 25px;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+button {
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.flex {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+

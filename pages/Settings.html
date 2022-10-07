@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InstaLife</title>
+    <!-- Top-icon -->
+    <link rel="icon" href="../assets/all-images/icons/top-icon.png" type="images/png" />
+    <!-- JS -->
+    <script src="../assets/all-scripts/index.js"></script>
+    <!-- Global styles -->
+    <link href="../assets/index/css/index.css" type="text/css" rel="stylesheet" />
+    <!-- Settings styles -->
+    <link href="../assets/settings/index.css" type="text/css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header class="header flex">
+      <div class="header-bar flex">
+        <form action="Profile.html">
+          <button>
+            <h1 class="header-bar-title">InstaLife</h1>
+          </button>
+        </form>
+        <div class="header-bar-menu flex">
+          <button>
+            <img src="../assets/all-images/icons/house.svg" alt="Иконка-дом">
+            </svg>
+          </button>
+          <form action="Search-user.html">
+            <button>
+              <img src="../assets/all-images/icons/search.svg" alt="Иконка-поиск">
+            </button>
+          </form>
+          <button>
+            <img src="../assets/all-images/icons/plus.svg" alt="Иконка-плюс">
+          </button>
+          <button>
+            <img src="../assets/all-images/icons/message.svg" alt="Иконка-сообщение">
+          </button>
+          <form action="Profile.html">
+            <button>
+              <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="bar-menu-avatar">
+            </button>
+          </form>  
+        </div>
+      </div>
+    </header>
+    <div class="aside-bar-menu">
+      <button>
+        <img src="../assets/all-images/icons/settings.svg" alt="Иконка-настройки">
+      </button>
+      <button class="bar-menu-name">
+        <h2 class="menu-name-title">name</h2>
+        <img src="../assets/all-images/icons/arrow.svg" alt="Иконка-стрелка">         
+      </button>
+      <button>
+        <img src="../assets/all-images/icons/heart.svg" alt="Иконка-сердце">
+      </button>
+    </div>
+    <main>
+      <div class="settings-avatar flex">
+        <div class="settings-avatar-wrap flex">
+          <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="avatar-wrap-img">
+        </div>
+        <div class="settings-section-control">
+          <h2 class="section-control-title">name</h2>
+          <button>Изменить фото профиля</button>
+        </div>
+      </div>
+      <form action="" class="profile-settings"> 
+        <div class="profile-settings-section flex">
+          <label for="nam-s" class="settings-section-item flex">Имя<br>Фамилия</label>
+          <div class="settings-section-bar">
+            <input id="nam-s" type="text" required placeholder="Name Surname" class="settings-section-input">
+            <span class="form-error">Необходимо указать имя и фамилию</span>
+          </div>
+        </div>
+        <div class="profile-settings-section flex">
+          <label for="login" class="settings-section-item flex">login<br>пользователя</label>
+          <div class="settings-section-bar">
+            <input id="login" type="text" required placeholder="name" class="settings-section-input">
+            <span class="form-error">Необходимо указать login</span>
+          </div>
+        </div>
+        <div class="profile-settings-section flex">
+          <label for="url" class="settings-section-item flex">Сайт</label>
+          <div class="settings-section-bar">
+            <input id="url" type="url" placeholder="url" class="settings-section-input">
+            <span class="form-error">Укажите в формате http://mysite.ru</span> 
+          </div>
+        </div>
+        <div class="profile-settings-section flex">
+          <label for="about-m-f" class="settings-section-item flex">О себе</label>
+          <div class="settings-section-bar">
+            <textarea id="about-m-f" name="" id="" maxlength="150" rows="6" class="settings-section-textarea"></textarea>
+          </div>
+        </div>
+        <div class="profile-settings-section flex">
+          <label for="email" class="settings-section-item flex">Эл. адрес</label>
+          <div class="settings-section-bar">
+            <input id="email" type="email" name="email" required placeholder="...@mail.ru" class="settings-section-input">
+            <span class="form-error">Укажите в формате example@site.com</span>
+          </div>
+        </div>
+        <div class="profile-settings-section flex">
+          <label for="tel" class="settings-section-item flex">Номер телефона</label>
+          <div class="settings-section-bar">
+            <input id="tel" type="tel" required placeholder="Телефон" pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" minlength="18" maxlength="18" class="settings-section-input"/>
+            <span class="form-error">Укажите в формате +7 (123) 456-78-90</span>
+          </div>
+        </div>
+        <div class="profile-settings-section flex">
+          <label for="gender" class="settings-section-item flex">Пол</label>
+          <div class="settings-section-bar">
+            <input id="gender" type="text" placeholder="мужской / женский" class="settings-section-input">
+          </div>
+        </div>
+        <div class="profile-settings-section flex">
+          <div class="settings-section-item flex"></div>
+          <button type="submit" class="item-btn-submit">Отправить</button>
+        </div>
+      </form>
+    </main>
+  </body>
+</html>
