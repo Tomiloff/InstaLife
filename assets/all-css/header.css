@@ -31,6 +31,10 @@
   display: none;
 }
 
+#clock {
+  font-size: 16px;
+}
+
 
 /* Media queries */
 
@@ -79,6 +83,10 @@
   .header-bar-title,
   .header-bar-logo,
   .header-bar-search {
+    display: none;
+  }
+
+  #clock {
     display: none;
   }
   

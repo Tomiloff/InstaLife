@@ -1,5 +1,6 @@
 .info-aside-mobile,
-.profile-btn-edit {
+.profile-btn-edit,
+#clock-mobile {
   display: none;
 }
 
@@ -132,7 +133,12 @@
   }
 
   .profile-info-description {
-    padding-top: 40px;
+    padding-top: 60px;
+  }
+
+  #clock-mobile {
+    display: block;
+    margin: 0 auto;
   }
 
   .info-description-statistic {
@@ -206,8 +212,8 @@
     margin-top: 20px;
   }
 
-  .profile-info-description {
-    padding: 50px 0 0 0;
+  #clock-mobile {
+    font-size: 13px;
   }
 
   .description-statistic-posts,
