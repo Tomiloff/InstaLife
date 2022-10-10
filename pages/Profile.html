@@ -32,7 +32,7 @@
             </button>
           </form>
           <button>
-            <img src="../assets/all-images/icons/plus.svg" alt="Иконка-плюс">
+            <img id="btnPublication" src="../assets/all-images/icons/plus.svg" alt="Иконка-плюс">
           </button>
           <button>
             <img src="../assets/all-images/icons/message.svg" alt="Иконка-сообщение">
@@ -138,6 +138,19 @@
         </div>
       </div>
     </main>
+    <!-- Modal -->
+    <div class="modal-profile flex">
+      <div class="modal-profile-loading flex">
+        <div class="profile-loading-wrap">
+          <img id="imageWrap" src="" alt="Фото" class="loading-wrap-img">
+        </div>
+        <div class="profile-loading-control flex">
+          <button id="changePhoto" type="button" class="loading-control-btn">Сменить фото</button>
+          <button type="button" class="loading-control-btn">Добавить сейчас</button>
+          <button type="button" class="loading-control-btn">Добавить позже</button>
+        </div>
+      </div>
+    </div>
     <!-- Global scripts -->
     <script type="module" src="../assets/index/js/index.js"></script>
     <!-- Profile scripts -->
