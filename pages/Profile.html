@@ -146,13 +146,18 @@
         </div>
         <div class="profile-loading-control flex">
           <button id="changePhoto" type="button" class="loading-control-btn">Сменить фото</button>
-          <button type="button" class="loading-control-btn">Добавить сейчас</button>
-          <button type="button" class="loading-control-btn">Добавить позже</button>
+          <button id="addNow" type="button" class="loading-control-btn">Добавить сейчас</button>
+          <button id="addLater" type="button" class="loading-control-btn">Добавить позже</button>
+          <div class="loading-control-form">
+            <output for="counter" id="volume">Через 0 секунд</output>
+            <input id="counter" type="range" min="0" max="60" value="0" step="1" oninput="outputUpdate(value)">
+            <button type="button" class="control-form-btn">Готово</button>
+          </div>
         </div>
       </div>
     </div>
     <!-- Global scripts -->
-    <script type="module" src="../assets/index/js/index.js"></script>
+    <script src="../assets/index/js/index.js"></script>
     <!-- Profile scripts -->
     <script src="../assets/profile/index.js"></script>
   </body>
