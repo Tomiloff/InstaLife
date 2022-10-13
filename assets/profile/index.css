@@ -123,6 +123,7 @@
 
 .profile-content-wrap {
   width: 100%;
+  cursor: pointer;
 }
 
 .profile-content-wrap img {
@@ -143,6 +144,7 @@
 }
 
 .modal-profile-loading {
+  display: none;
   max-width: 600px;
   height: 400px;
   background: var(--white); 
@@ -233,6 +235,58 @@
 .control-form-btn:active {
   background: #04c350;
 }
+
+.modal-profile-post {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  max-width: 400px;
+  background: var(--white);
+  border-radius: 3px;
+}
+
+.profile-post-wrap {
+  width: 100%;
+  background-position: center;
+  border-radius: 3px 3px 0 0;
+  height: 400px;
+}
+
+.post-wrap-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px 3px 0 0;
+}
+
+.profile-post-description {
+  flex-direction: column;
+  padding: 8px 10px;
+  font-size: 12px;
+}
+
+.post-description-bar {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.description-bar-action button {
+  margin-right: 10px;
+}
+
+.post-description-like {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.description-story-login {
+  font-weight: bold;
+}
+
+.post-description-story {
+  line-height: 15px;
+}
   
 
 /* Media queries */
@@ -315,6 +369,10 @@
 
   .loading-control-form {
     left: -35px;
+  }
+
+  .profile-post-wrap {
+    height: 300px;
   }
 
 }

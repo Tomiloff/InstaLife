@@ -142,7 +142,7 @@
     <div class="modal-profile flex">
       <div class="modal-profile-loading flex">
         <div class="profile-loading-wrap">
-          <img id="imageWrap" src="" alt="Фото" class="loading-wrap-img">
+          <img src="" alt="Фото" class="loading-wrap-img">
         </div>
         <div class="profile-loading-control flex">
           <button id="changePhoto" type="button" class="loading-control-btn">Сменить фото</button>
@@ -153,6 +153,34 @@
             <input id="counter" type="range" min="0" max="60" value="0" step="1" oninput="outputUpdate(value)">
             <button type="button" class="control-form-btn">Готово</button>
           </div>
+        </div>
+      </div>
+      <div class="modal-profile-post">
+        <div class="profile-post-wrap">
+          <img src="" alt="Фото" class="post-wrap-img">
+        </div>
+        <div class="profile-post-description flex">
+          <div class="post-description-bar flex">
+            <div class="description-bar-action">
+              <button>
+                <img src="../assets/profile/images/icons/heart.svg" alt="Иконка-сердце">
+              </button>
+              <button>
+                <img src="../assets/profile/images/icons/comment.svg" alt="Иконка-комментарий">
+              </button>
+              <button>
+                <img src="../assets/profile/images/icons/repost.svg" alt="Иконка-поделиться">
+              </button>
+            </div>
+            <button>
+              <img src="../assets/profile/images/icons/bookmark.svg" alt="Иконка-закладка">
+            </button>
+          </div>
+          <output class="post-description-like">Нравится: 0</output>
+          <p class="post-description-story">
+            <b class="description-story-login">name</b>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo perspiciatis nesciunt fugit deserunt, ex temporibus assumenda inventore. Eaque ullam quaerat laborum eveniet dolore, tempora architecto ducimus a voluptates maiores optio.
+          </p>
         </div>
       </div>
     </div>

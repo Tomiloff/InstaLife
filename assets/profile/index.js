@@ -23,47 +23,43 @@ let showTime = () => {
 showTime();
 
 
-let btnPlus = document.querySelector("#btnPublication");
-let modal = document.querySelector(".modal-profile"); 
-let html = document.querySelector("html");
-let body = document.querySelector("body");
-
-btnPlus.addEventListener( "click", () => {
-  modal.style.display = "flex";
-  html.style.overflow = "hidden";
-  body.style.overflow = "hidden";
-
-  fetchImage();
-} );
-
-
-let popup = document.querySelector(".modal-profile-loading");
-
 let cancelStyle = () => {
   modal.style.display = "none";
+  popup.style.display = "none";
+  modalPost.style.display = "none";
   html.style.overflow = "visible";
   body.style.overflow = "visible";
 };
 
-document.addEventListener( "click", (e) => {
-  let click = e.composedPath();
 
-  if (!click.includes(popup) && !click.includes(btnPlus)) cancelStyle();
-});
-
-
-let imgWrap = document.querySelector("#imageWrap");
+let imgWrap = document.querySelector(".loading-wrap-img");
 let url = "http://aws.random.cat/meow";
 
 async function fetchImage() {
   try {
-    let responcse = await fetch(url);
-    let data = await responcse.json();
+    let promise = await fetch(url);
+    let data = await promise.json();
     imgWrap.src = data.file;
   } catch (error) {
     console.log(error);
   }
 }
+
+
+let btnPlus = document.querySelector("#btnPublication");
+let modal = document.querySelector(".modal-profile"); 
+let html = document.querySelector("html");
+let body = document.querySelector("body");
+let popup = document.querySelector(".modal-profile-loading");
+
+btnPlus.addEventListener( "click", () => {
+  modal.style.display = "flex";
+  popup.style.display = "flex";
+  html.style.overflow = "hidden";
+  body.style.overflow = "hidden";
+
+  fetchImage();
+} );
 
 
 let btnChange = document.querySelector("#changePhoto");
@@ -97,13 +93,13 @@ btnLater.addEventListener( "click", () => {
 let output = document.querySelector("#volume");
 
 let outputUpdate = (vol) => {
-  output.value = `Через ${vol} секунд`;
+  output.value = `Через ${vol} секунд(ы)`;
 };
 
 
 let addPhoto = () => {
   let srcImg = imgWrap.src;
-  let newPhoto = `<div class="profile-content-wrap"><img src="${srcImg}" alt="Фото-публикация"></div>`
+  let newPhoto = `<div class="profile-content-wrap"><img src="${srcImg}" alt="Фото-публикация"></div>`;
 
   listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
 };
@@ -127,4 +123,25 @@ document.addEventListener( "click", (e) => {
   if (!click.includes(btnLater) && !click.includes(timing)) {
     timing.style.display = "none";
   }
+});
+
+
+let snapshot = document.querySelector(".page-profile-content");
+let modalPost = document.querySelector(".modal-profile-post");
+let postImg = document.querySelector(".post-wrap-img");
+
+snapshot.addEventListener( "click", (e) => {
+  postImg.src = e.target.closest('img').src;
+
+  modal.style.display = "flex";
+  modalPost.style.display = "flex";
+  html.style.overflow = "hidden";
+  body.style.overflow = "hidden";
+});
+
+
+modal.addEventListener( "click", (e) => {
+  let click = e.composedPath();
+
+  if ( !click.includes(popup) && !click.includes(modalPost) ) cancelStyle();
 });
