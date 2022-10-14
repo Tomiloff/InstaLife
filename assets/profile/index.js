@@ -1,6 +1,6 @@
 "use strict";
 
-let showTime = () => {
+const showTime = () => {
   window.onload = () => {
     this.setInterval( () => {
       let date = new Date();
@@ -13,7 +13,7 @@ let showTime = () => {
       if(minutes < 10) minutes = `0${minutes}`;
       if(seconds < 10) seconds = `0${seconds}`;
 
-      let clock = `${hours}:${minutes}:${seconds}`;
+      const clock = `${hours}:${minutes}:${seconds}`;
       document.querySelector("#clock").innerHTML = clock;
       document.querySelector("#clock-mobile").innerHTML = clock;
     });
@@ -32,8 +32,8 @@ let cancelStyle = () => {
 };
 
 
-let imgWrap = document.querySelector(".loading-wrap-img");
-let url = "http://aws.random.cat/meow";
+const imgWrap = document.querySelector(".loading-wrap-img");
+const url = "http://aws.random.cat/meow";
 
 async function fetchImage() {
   try {
@@ -69,10 +69,10 @@ btnChange.addEventListener( "click", () => {
 });
 
 
-let btnNow = document.querySelector("#addNow");
+let btnAddImgNow = document.querySelector("#addNow");
 let listPhoto = document.querySelector(".page-profile-content");
 
-btnNow.addEventListener( "click", () => {
+btnAddImgNow.addEventListener( "click", () => {
   let srcImg = imgWrap.src;
   let newPhoto = `<div class="profile-content-wrap"><img src="${srcImg}" alt="Фото-публикация"></div>`
 
@@ -82,10 +82,10 @@ btnNow.addEventListener( "click", () => {
 } );
 
 
-let btnLater = document.querySelector("#addLater");
+let btnAddImgLater = document.querySelector("#addLater");
 let timing = document.querySelector(".loading-control-form");
 
-btnLater.addEventListener( "click", () => {
+btnAddImgLater.addEventListener( "click", () => {
   timing.style.display = "flex";
 });
 
@@ -93,7 +93,12 @@ btnLater.addEventListener( "click", () => {
 let output = document.querySelector("#volume");
 
 let outputUpdate = (vol) => {
-  output.value = `Через ${vol} секунд(ы)`;
+
+  if (vol == 1) {
+    output.value = `Через ${vol} секунду`;
+  } else {
+    output.value = `Через ${vol} секунд(ы)`;
+  }
 };
 
 
@@ -120,17 +125,16 @@ btnConfirm.addEventListener( "click", () => {
 document.addEventListener( "click", (e) => {
   let click = e.composedPath();
 
-  if (!click.includes(btnLater) && !click.includes(timing)) {
+  if (!click.includes(btnAddImgLater) && !click.includes(timing)) {
     timing.style.display = "none";
   }
 });
 
 
-let snapshot = document.querySelector(".page-profile-content");
 let modalPost = document.querySelector(".modal-profile-post");
 let postImg = document.querySelector(".post-wrap-img");
 
-snapshot.addEventListener( "click", (e) => {
+listPhoto.addEventListener( "click", (e) => {
   postImg.src = e.target.closest('img').src;
 
   modal.style.display = "flex";
