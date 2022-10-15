@@ -23,13 +23,44 @@ const showTime = () => {
 showTime();
 
 
-let cancelStyle = () => {
-  modal.style.display = "none";
-  popup.style.display = "none";
-  modalPost.style.display = "none";
-  html.style.overflow = "visible";
-  body.style.overflow = "visible";
-};
+const posts = [
+  {
+    id: 1, 
+    login: 'name', 
+    description: 'Картина дерева', 
+    src: '../assets/profile/images/img-content-1.jpg'
+  },
+  {
+    id: 2, 
+    login: 'name', 
+    description: 'В мире животных', 
+    src: '../assets/profile/images/img-content-2.jpg'
+  },
+  {
+    id: 3, 
+    login: 'name', 
+    description: 'Невероятная архитектура здания Венгерского парламента', 
+    src: '../assets/profile/images/img-content-3.jpg'
+  },
+  {
+    id: 4, 
+    login: 'name', 
+    description: 'Клубничный торт на Ваш праздник', 
+    src: '../assets/profile/images/img-content-4.jpg'
+  },
+  {
+    id: 5, 
+    login: 'name', 
+    description: 'Всё для сада и огорода', 
+    src: '../assets/profile/images/img-content-5.jpeg'
+  },
+  {
+    id: 6, 
+    login: 'name', 
+    description: 'Силуэт дерева с раскидистой кроной и с солнцем по центру', 
+    src: '../assets/profile/images/img-content-6.jpg'
+  },
+];
 
 
 const imgWrap = document.querySelector(".loading-wrap-img");
@@ -46,11 +77,11 @@ async function fetchImage() {
 }
 
 
-let btnPlus = document.querySelector("#btnPublication");
-let modal = document.querySelector(".modal-profile"); 
-let html = document.querySelector("html");
-let body = document.querySelector("body");
-let popup = document.querySelector(".modal-profile-loading");
+const btnPlus = document.querySelector("#btnPublication");
+const modal = document.querySelector(".modal-profile"); 
+const html = document.querySelector("html");
+const body = document.querySelector("body");
+const popup = document.querySelector(".modal-profile-loading");
 
 btnPlus.addEventListener( "click", () => {
   modal.style.display = "flex";
@@ -62,38 +93,72 @@ btnPlus.addEventListener( "click", () => {
 } );
 
 
-let btnChange = document.querySelector("#changePhoto");
+const btnChange = document.querySelector("#changePhoto");
 
 btnChange.addEventListener( "click", () => {
   fetchImage();
 });
 
 
-let btnAddImgNow = document.querySelector("#addNow");
-let listPhoto = document.querySelector(".page-profile-content");
+const cancelStyle = () => {
+  modal.style.display = "none";
+  popup.style.display = "none";
+  modalPost.style.display = "none";
+  html.style.overflow = "visible";
+  body.style.overflow = "visible";
+};
+
+
+const addPhoto = () => {
+  let count = posts.length;
+  count ++;
+
+  let newPost = {
+    id: count, 
+    title: 'name', 
+    description: '', 
+    src: imgWrap.src
+  };
+
+  posts.push(newPost);
+};
+
+
+const listPhoto = document.querySelector(".page-profile-content");
+
+const showPosts = () => {
+  listPhoto.innerHTML = "";
+
+  posts.map( (index) => {
+    let newPhoto = `<div class="profile-content-wrap">
+                    <img src="${index.src}" 
+                    alt="Фото-публикация"></div>`;
+
+    listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
+  } );
+};
+
+showPosts();
+
+
+const btnAddImgNow = document.querySelector("#addNow");
 
 btnAddImgNow.addEventListener( "click", () => {
-  let srcImg = imgWrap.src;
-  let newPhoto = `<div class="profile-content-wrap"><img src="${srcImg}" alt="Фото-публикация"></div>`
-
-  listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
-
-  cancelStyle();
+  addPhoto(),cancelStyle(),showPosts();
 } );
 
 
-let btnAddImgLater = document.querySelector("#addLater");
-let timing = document.querySelector(".loading-control-form");
+const btnAddImgLater = document.querySelector("#addLater");
+const timing = document.querySelector(".loading-control-form");
 
 btnAddImgLater.addEventListener( "click", () => {
   timing.style.display = "flex";
 });
 
 
-let output = document.querySelector("#volume");
+const output = document.querySelector("#volume");
 
-let outputUpdate = (vol) => {
-
+const outputUpdate = (vol) => {
   if (vol == 1) {
     output.value = `Через ${vol} секунду`;
   } else {
@@ -102,19 +167,14 @@ let outputUpdate = (vol) => {
 };
 
 
-let addPhoto = () => {
-  let srcImg = imgWrap.src;
-  let newPhoto = `<div class="profile-content-wrap"><img src="${srcImg}" alt="Фото-публикация"></div>`;
-
-  listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
-};
-
-
-let btnConfirm = document.querySelector(".control-form-btn");
-let inputRange = document.querySelector("#counter");
+const btnConfirm = document.querySelector(".control-form-btn");
+const inputRange = document.querySelector("#counter");
 
 btnConfirm.addEventListener( "click", () => {
-  setTimeout(addPhoto, inputRange.value * 1000);
+  setTimeout( () => {
+    addPhoto();
+    showPosts();
+  }, inputRange.value * 1000);
   
   timing.style.display = "none";
   
@@ -131,8 +191,8 @@ document.addEventListener( "click", (e) => {
 });
 
 
-let modalPost = document.querySelector(".modal-profile-post");
-let postImg = document.querySelector(".post-wrap-img");
+const modalPost = document.querySelector(".modal-profile-post");
+const postImg = document.querySelector(".post-wrap-img");
 
 listPhoto.addEventListener( "click", (e) => {
   postImg.src = e.target.closest('img').src;
