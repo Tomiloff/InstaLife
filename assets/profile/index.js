@@ -123,7 +123,7 @@ const addPhoto = () => {
 
   let newPost = {
     id: count, 
-    title: 'name', 
+    login: 'name', 
     description: '', 
     src: imgWrap.src
   };
@@ -137,10 +137,14 @@ const listPhoto = document.querySelector(".page-profile-content");
 const showPosts = () => {
   listPhoto.innerHTML = "";
 
+  let count = 1;
+
   posts.map( (index) => {
-    let newPhoto = `<div class="profile-content-wrap">
+    let newPhoto = `<div id="${count}" class="profile-content-wrap">
                     <img src="${index.src}" 
                     alt="Фото-публикация"></div>`;
+
+    count++;
 
     listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
   } );
@@ -149,10 +153,19 @@ const showPosts = () => {
 showPosts();
 
 
+const inputTextForm = document.querySelector(".loading-control-comment");
+
+let submitText = () => {
+  posts[posts.length - 1].description = inputTextForm.value;
+
+  inputTextForm.value = "";
+};
+
+
 const btnAddImgNow = document.querySelector("#addNow");
 
 btnAddImgNow.addEventListener( "click", () => {
-  addPhoto(),cancelStyle(),showPosts();
+  addPhoto(),cancelStyle(),showPosts(),submitText();
 } );
 
 
@@ -180,8 +193,7 @@ const inputRange = document.querySelector("#counter");
 
 btnConfirm.addEventListener( "click", () => {
   setTimeout( () => {
-    addPhoto();
-    showPosts();
+    addPhoto(),submitText(),showPosts();
   }, inputRange.value * 1000);
   
   timing.style.display = "none";
@@ -201,9 +213,14 @@ document.addEventListener( "click", (e) => {
 
 const modalPost = document.querySelector(".modal-profile-post");
 const postImg = document.querySelector(".post-wrap-img");
+const descriptionPhoto = document.querySelector(".post-description-story");
 
 listPhoto.addEventListener( "click", (e) => {
-  postImg.src = e.target.closest('img').src;
+  let attrId = e.target.parentElement.id;
+  let index = posts[attrId - 1];
+
+  postImg.src = posts[attrId - 1].src;
+  descriptionPhoto.innerHTML = `<b>${index.login}</b> ${index.description}`;
 
   modal.style.display = "flex";
   modalPost.style.display = "flex";

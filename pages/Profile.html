@@ -129,9 +129,12 @@
           <img src="" alt="Фото" class="loading-wrap-img">
         </div>
         <div class="profile-loading-control flex">
-          <button id="changePhoto" type="button" class="loading-control-btn">Сменить фото</button>
-          <button id="addNow" type="button" class="loading-control-btn">Добавить сейчас</button>
-          <button id="addLater" type="button" class="loading-control-btn">Добавить позже</button>
+          <textarea placeholder="Ваш комментарий..." class="loading-control-comment"></textarea>
+          <div class="loading-control-buttons">
+            <button id="changePhoto" type="button" class="loading-control-btn">Сменить фото</button>
+            <button id="addNow" type="submit" class="loading-control-btn">Добавить сейчас</button>
+            <button id="addLater" type="submit" class="loading-control-btn">Добавить позже</button>
+          </div>
           <div class="loading-control-form">
             <output for="counter" id="volume">Через 0 секунд</output>
             <input id="counter" type="range" min="0" max="60" value="0" step="1" oninput="outputUpdate(value)">
@@ -161,10 +164,7 @@
             </button>
           </div>
           <output class="post-description-like">Нравится: 0</output>
-          <p class="post-description-story">
-            <b class="description-story-login">name</b>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo perspiciatis nesciunt fugit deserunt, ex temporibus assumenda inventore. Eaque ullam quaerat laborum eveniet dolore, tempora architecto ducimus a voluptates maiores optio.
-          </p>
+          <p class="post-description-story"></p>
         </div>
       </div>
     </div>
