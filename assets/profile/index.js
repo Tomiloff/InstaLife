@@ -82,8 +82,10 @@ const modal = document.querySelector(".modal-profile");
 const html = document.querySelector("html");
 const body = document.querySelector("body");
 const popup = document.querySelector(".modal-profile-loading");
+const loader = document.querySelector(".preloader");
 
 btnPlus.addEventListener( "click", () => {
+  loader.classList.remove("hide-loader");
   modal.style.display = "flex";
   popup.style.display = "flex";
   html.style.overflow = "hidden";
@@ -93,9 +95,15 @@ btnPlus.addEventListener( "click", () => {
 } );
 
 
+imgWrap.addEventListener( "load", () => {
+  loader.classList.add("hide-loader");
+} );
+
+
 const btnChange = document.querySelector("#changePhoto");
 
 btnChange.addEventListener( "click", () => {
+  loader.classList.remove("hide-loader");
   fetchImage();
 });
 
