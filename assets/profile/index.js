@@ -28,39 +28,66 @@ const posts = [
     id: 1, 
     login: 'name', 
     description: 'Картина дерева', 
-    src: '../assets/profile/images/img-content-1.jpg'
+    src: '../assets/profile/images/img-content-1.jpg',
+    like: 18
   },
   {
     id: 2, 
     login: 'name', 
     description: 'В мире животных', 
-    src: '../assets/profile/images/img-content-2.jpg'
+    src: '../assets/profile/images/img-content-2.jpg',
+    like: 5
   },
   {
     id: 3, 
     login: 'name', 
     description: 'Невероятная архитектура здания Венгерского парламента', 
-    src: '../assets/profile/images/img-content-3.jpg'
+    src: '../assets/profile/images/img-content-3.jpg',
+    like: 10
   },
   {
     id: 4, 
     login: 'name', 
     description: 'Клубничный торт на Ваш праздник', 
-    src: '../assets/profile/images/img-content-4.jpg'
+    src: '../assets/profile/images/img-content-4.jpg',
+    like: 69
   },
   {
     id: 5, 
     login: 'name', 
     description: 'Всё для сада и огорода', 
-    src: '../assets/profile/images/img-content-5.jpeg'
+    src: '../assets/profile/images/img-content-5.jpeg',
+    like: 34
   },
   {
     id: 6, 
     login: 'name', 
     description: 'Силуэт дерева с раскидистой кроной и с солнцем по центру', 
-    src: '../assets/profile/images/img-content-6.jpg'
+    src: '../assets/profile/images/img-content-6.jpg',
+    like: 78
   },
 ];
+
+
+const listPhoto = document.querySelector(".page-profile-content");
+
+const showPosts = () => {
+  listPhoto.innerHTML = "";
+
+  let count = 1;
+
+  posts.map( (index) => {
+    let newPhoto = `<div id="${count}" class="profile-content-wrap">
+                    <img src="${index.src}" 
+                    alt="Фото-публикация"></div>`;
+
+    count++;
+
+    listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
+  } );
+};
+
+showPosts();
 
 
 const imgWrap = document.querySelector(".loading-wrap-img");
@@ -123,34 +150,14 @@ const addPhoto = () => {
 
   let newPost = {
     id: count, 
-    login: 'name', 
-    description: '', 
-    src: imgWrap.src
+    login: "name", 
+    description: "", 
+    src: imgWrap.src,
+    like: 0
   };
 
   posts.push(newPost);
 };
-
-
-const listPhoto = document.querySelector(".page-profile-content");
-
-const showPosts = () => {
-  listPhoto.innerHTML = "";
-
-  let count = 1;
-
-  posts.map( (index) => {
-    let newPhoto = `<div id="${count}" class="profile-content-wrap">
-                    <img src="${index.src}" 
-                    alt="Фото-публикация"></div>`;
-
-    count++;
-
-    listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
-  } );
-};
-
-showPosts();
 
 
 const inputTextForm = document.querySelector(".loading-control-comment");
@@ -213,14 +220,18 @@ document.addEventListener( "click", (e) => {
 
 const modalPost = document.querySelector(".modal-profile-post");
 const postImg = document.querySelector(".post-wrap-img");
-const descriptionPhoto = document.querySelector(".post-description-story");
+const commentPhoto = document.querySelector(".post-description-story");
+const likePhoto = document.querySelector(".post-description-like");
 
 listPhoto.addEventListener( "click", (e) => {
   let attrId = e.target.parentElement.id;
-  let index = posts[attrId - 1];
+  let indexObj = posts[attrId - 1];
 
-  postImg.src = posts[attrId - 1].src;
-  descriptionPhoto.innerHTML = `<b>${index.login}</b> ${index.description}`;
+  modalPost.id = indexObj.id;
+  postImg.src = indexObj.src;
+  commentPhoto.innerHTML = `<b>${indexObj.login}</b> ${indexObj.description}`;
+  likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+
 
   modal.style.display = "flex";
   modalPost.style.display = "flex";
@@ -232,5 +243,19 @@ listPhoto.addEventListener( "click", (e) => {
 modal.addEventListener( "click", (e) => {
   let click = e.composedPath();
 
-  if ( !click.includes(popup) && !click.includes(modalPost) ) cancelStyle();
+  if ( !click.includes(popup) && !click.includes(modalPost) ) {
+    cancelStyle();
+  }
 });
+
+
+const btnLike = document.querySelector("#action-btn-heart");
+
+btnLike.addEventListener( "click", (e) => {
+  let attrId = e.target.closest(".modal-profile-post").id;
+  let indexObj = posts[attrId - 1];
+  let count = 1;
+
+  indexObj.like = indexObj.like + count;
+  likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+} );
