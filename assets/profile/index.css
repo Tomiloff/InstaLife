@@ -1,5 +1,6 @@
 .info-aside-mobile,
-.profile-btn-edit {
+.profile-btn-edit,
+#clock-mobile {
   display: none;
 }
 
@@ -38,6 +39,14 @@
   color: var(--white);
   font-weight: bold;
   margin-left: 18px;
+}
+
+.description-name-btn:hover {
+  background-color: #7dbbff;
+}
+
+.description-name-btn:active {
+  box-shadow: 0px 0px 25px 2px rgba(34, 60, 80, 0.62) inset;
 }
 
 .info-description-statistic {
@@ -107,20 +116,226 @@
 }
 
 .page-profile-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1px;
 }
 
 .profile-content-wrap {
-  width: 33%;
-  margin-bottom: 1px;
+  width: 100%;
+  cursor: pointer;
 }
 
 .profile-content-wrap img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
+.modal-profile {
+  display: none;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 100vh;
+  z-index: 2000;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.modal-profile-loading {
+  display: none;
+  max-width: 800px;
+  height: 500px;
+  background: var(--white); 
+  justify-content: flex-start;
+  border-radius: 3px;
+}
+
+.profile-loading-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  height: 100%;
+  background-position: center;
+}
+
+.preloader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: #002043;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.6s;
+  border-radius: 3px 0 0 3px;
+}
+
+.preloader-loader {
+  width: 85px;
+  height: 85px;
+  border: 6px solid rgb(255, 255, 255, 0.6);
+  border-radius: 50%;
+  border-left-color: #ffffff00;
+  border-bottom-color: #ffffff;
+  border-right-color: #ffffffc4;
+  animation: loader 0.8s linear infinite;
+}
+
+@keyframes loader {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hide-loader {
+  opacity: 0;
+}
+
+.loading-wrap-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px 0 0 3px;
+}
+
+.profile-loading-control {
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 200px;
+  padding: 0 10px;
+}
+
+.loading-control-comment {
+  resize: none;
+  margin-bottom: 35px;
+  width: 100%;
+  border-radius: 3px;
+  padding: 15px;
+  border: 2px solid var(--grey);
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 19px;
+  height: 150px;
+}
+
+.loading-control-buttons {
+  text-align: center;
+}
+
+.loading-control-btn {
+  width: 130px;
+  padding: 8px 0;
+  background-color: var(--blue);
+  color: var(--white);
+  margin-bottom: 25px;
+  font-weight: bold;
+}
+
+.loading-control-btn:hover {
+  background-color: #7dbbff;
+}
+
+.loading-control-btn:active {
+  box-shadow: 0px 0px 25px 2px rgba(34, 60, 80, 0.62) inset;
+}
+
+.loading-control-form {
+  position: absolute;
+  left: 10px;
+  bottom: 15px;
+  justify-content: space-between;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 3px;
+  border: 1px solid var(--grey);
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+  background: var(--white);
+}
+
+.loading-control-form output {
+  padding: 20px 0;
+}
+
+.loading-control-form input {
+  width: 140px;
+  padding: 9px 0;
+  margin: 0 18px;
+  cursor: pointer;
+}
+
+.control-form-btn {
+  color: var(--white);
+  cursor: pointer;
+  padding: 7px 15px;
+  border-radius: 3px;
+  margin: 20px 0;
+  background: var(--blue);
+  font-weight: bold;
+}
+
+.control-form-btn:hover {
+  background-color: #7dbbff;
+}
+
+.control-form-btn:active {
+  background: #04c350;
+}
+
+.modal-profile-post {
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  max-width: 550px;
+  background: var(--white);
+  border-radius: 3px;
+}
+
+.profile-post-wrap {
+  width: 100%;
+  background-position: center;
+  border-radius: 3px 3px 0 0;
+  height: 450px;
+}
+
+.post-wrap-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px 3px 0 0;
+}
+
+.profile-post-description {
+  flex-direction: column;
+  padding: 10px;
+}
+
+.post-description-bar {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.description-bar-action button {
+  margin-right: 10px;
+}
+
+.post-description-like {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.post-description-story {
+  line-height: 16px;
+}
+  
 
 /* Media queries */
 
@@ -132,7 +347,12 @@
   }
 
   .profile-info-description {
-    padding-top: 40px;
+    padding-top: 60px;
+  }
+
+  #clock-mobile {
+    display: block;
+    margin: 0 auto;
   }
 
   .info-description-statistic {
@@ -187,9 +407,24 @@
     justify-content: center;
   }
 
-  .profile-content-wrap {
-    width: 49%;
-    margin-bottom: 4px;
+  .page-profile-content {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .profile-loading-control {
+    max-width: 150px;
+  }
+
+  .loading-control-form {
+    left: -35px;
+  }
+
+  .profile-post-wrap {
+    height: 350px;
+  }
+
+  .profile-post-description {
+    font-size: 12px;
   }
 
 }
@@ -199,15 +434,15 @@
 @media only screen and (max-width: 450px) {
 
   .page-profile {
-    padding: 35px 20px 0 20px;
+    padding-top: 35px;
   }
 
   .info-avatar-img {
     margin-top: 20px;
   }
 
-  .profile-info-description {
-    padding: 50px 0 0 0;
+  #clock-mobile {
+    font-size: 13px;
   }
 
   .description-statistic-posts,
@@ -225,6 +460,57 @@
 
   .profile-btn-edit {
     font-size: 11px;
+  }
+
+  .modal-profile-loading {
+    max-width: 380px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-loading-wrap {
+    max-width: none;
+    border-radius: 3px 3px 0 0;
+  }
+
+  .preloader {
+    border-radius: 3px 3px 0 0;
+  }
+
+  .loading-wrap-img {
+    border-radius: 3px 3px 0 0;
+    height: 375px;
+  }
+
+  .profile-loading-control {
+    flex-direction: initial;
+    align-items: center;
+    padding: 9px 10px;
+    justify-content: space-around;
+    max-width: 380px;
+  }
+
+  .loading-control-comment {
+    margin-bottom: 0;
+  }
+
+  .loading-control-btn {
+    width: 100px;
+    padding: 5px 0;
+    font-size: 11px;
+    margin-bottom: 10px;
+  }
+
+  .loading-control-form {
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 6px;
+  }
+
+  .loading-control-comment {
+    font-size: 12px;
+    height: 110px;
   }
 
 }
