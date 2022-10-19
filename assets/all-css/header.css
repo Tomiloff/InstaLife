@@ -20,6 +20,10 @@
   max-width: 198px;
 }
 
+.header-bar-menu button :active {
+  width: 90%;
+}
+
 .bar-menu-avatar {
   max-width: 22px;
   width: 100%;

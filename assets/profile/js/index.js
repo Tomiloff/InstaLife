@@ -23,7 +23,7 @@ const showTime = () => {
 showTime();
 
 
-import {posts} from "./funds.js";
+import {posts} from "./assets.js";
 
 
 const listPhoto = document.querySelector(".page-profile-content");
@@ -103,10 +103,11 @@ const addPhoto = () => {
 
   let newPost = {
     id: count, 
-    login: "name", 
+    userName: 'name', 
     description: "", 
     src: imgWrap.src,
-    like: 0
+    like: 0,
+    comments: []
   };
 
   posts.push(newPost);
@@ -138,18 +139,20 @@ btnAddImgLater.addEventListener( "click", () => {
 
 
 const output = document.querySelector("#volume");
+const inputRange = document.querySelector("#counter");
 
-const outputUpdate = (vol) => {
+inputRange.addEventListener( "input", () => {
+  let vol = parseInt(inputRange.value);
+
   if (vol == 1) {
-    output.value = `Через ${vol} секунду`;
-  } else {
-    output.value = `Через ${vol} секунд(ы)`;
-  }
-};
+    output.innerHTML = `Через ${vol} секунду`;
+      } else {
+        output.innerHTML = `Через ${vol} секунд(ы)`;
+      }
+} );
 
 
 const btnConfirm = document.querySelector(".control-form-btn");
-const inputRange = document.querySelector("#counter");
 
 btnConfirm.addEventListener( "click", () => {
   setTimeout( () => {
@@ -173,8 +176,9 @@ document.addEventListener( "click", (e) => {
 
 const modalPost = document.querySelector(".modal-profile-post");
 const postImg = document.querySelector(".post-wrap-img");
-const commentPhoto = document.querySelector(".post-description-story");
+const descriptionPhoto = document.querySelector(".post-description-story");
 const likePhoto = document.querySelector(".post-description-like");
+const sectionComments = document.querySelector(".post-description-section");
 
 listPhoto.addEventListener( "click", (e) => {
   let attrId = e.target.parentElement.id;
@@ -182,14 +186,20 @@ listPhoto.addEventListener( "click", (e) => {
 
   modalPost.id = indexObj.id;
   postImg.src = indexObj.src;
-  commentPhoto.innerHTML = `<b>${indexObj.login}</b> ${indexObj.description}`;
   likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+  descriptionPhoto.innerHTML = `<b>${indexObj.userName}</b> ${indexObj.description}`;
 
+  for (let key of indexObj.comments) {
+    let newComment = `<p class="post-description-comment"><b>${key.userName}</b> ${key.comment}</p>`;
+    sectionComments.insertAdjacentHTML("afterbegin", newComment);
+  }
 
   modal.style.display = "flex";
-  modalPost.style.display = "flex";
+  modalPost.style.display = "block";
   html.style.overflow = "hidden";
   body.style.overflow = "hidden";
+
+  console.log(posts);
 });
 
 
@@ -198,6 +208,7 @@ modal.addEventListener( "click", (e) => {
 
   if ( !click.includes(popup) && !click.includes(modalPost) ) {
     cancelStyle();
+    sectionComments.innerHTML = "";
   }
 });
 
@@ -212,3 +223,43 @@ btnLike.addEventListener( "click", (e) => {
   indexObj.like = indexObj.like + count;
   likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
 } );
+
+
+// const btnComment = document.querySelector("#action-btn-comment");
+// const postBar = document.querySelector(".profile-post-description");;
+
+// btnComment.addEventListener( "click", () => {
+//   commentForm.style.display = "block";
+// } );
+
+
+// const commentForm = document.querySelector("#post-description-form");
+// const btnCommentConfirm = document.querySelector(".post-description-btn");
+
+// btnCommentConfirm.addEventListener( "click", (e) => {
+//   let attrId = e.target.closest(".modal-profile-post").id;
+//   let indexObj = posts[attrId - 1];
+
+//   indexObj.comments = commentFormText.value; 
+
+//   let newComment = `<p class="post-description-comment"><b>${indexObj.userName}</b> ${indexObj.comments}</p>`
+
+//   commentForm.insertAdjacentHTML("beforebegin", newComment);
+
+//   commentForm.style.display = "none";
+
+//   commentFormText.value = "";
+// } );
+
+// const addComment = () => {
+//   // let count = posts.length;
+//   // count ++;
+
+//   let newComment = {
+//     id: 6,
+//     userName: "Alex",
+//     comment: "Wow"
+//   };
+
+//   posts.push(newComment);
+// };
