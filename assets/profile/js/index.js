@@ -198,8 +198,6 @@ listPhoto.addEventListener( "click", (e) => {
   modalPost.style.display = "block";
   html.style.overflow = "hidden";
   body.style.overflow = "hidden";
-
-  console.log(posts);
 });
 
 
@@ -225,41 +223,37 @@ btnLike.addEventListener( "click", (e) => {
 } );
 
 
-// const btnComment = document.querySelector("#action-btn-comment");
-// const postBar = document.querySelector(".profile-post-description");;
+const btnComment = document.querySelector("#action-btn-comment");
+const commentForm = document.querySelector("#post-description-form");
 
-// btnComment.addEventListener( "click", () => {
-//   commentForm.style.display = "block";
-// } );
+btnComment.addEventListener( "click", () => {
+  commentForm.style.display = "flex";
+} );
 
 
-// const commentForm = document.querySelector("#post-description-form");
-// const btnCommentConfirm = document.querySelector(".post-description-btn");
+const textComment = document.querySelector(".post-description-textarea");
+const btnCommentConfirm = document.querySelector(".post-description-btn");
 
-// btnCommentConfirm.addEventListener( "click", (e) => {
-//   let attrId = e.target.closest(".modal-profile-post").id;
-//   let indexObj = posts[attrId - 1];
+btnCommentConfirm.addEventListener( "click", (e) => {
+  let attrId = e.target.closest(".modal-profile-post").id;
+  let indexObj = posts[attrId - 1].comments;
+  let newTextComment = textComment.value;
 
-//   indexObj.comments = commentFormText.value; 
+  let count = indexObj.length;
+    count ++;
 
-//   let newComment = `<p class="post-description-comment"><b>${indexObj.userName}</b> ${indexObj.comments}</p>`
+  let newObjComment = {
+    id: count,
+    userName: "name",
+    comment: newTextComment
+  };
+  
+  indexObj.push(newObjComment);
+  
 
-//   commentForm.insertAdjacentHTML("beforebegin", newComment);
+  let newComment = `<p class="post-description-comment"><b>${newObjComment.userName}</b> ${newTextComment}</p>`
+  sectionComments.insertAdjacentHTML("afterbegin", newComment);
 
-//   commentForm.style.display = "none";
-
-//   commentFormText.value = "";
-// } );
-
-// const addComment = () => {
-//   // let count = posts.length;
-//   // count ++;
-
-//   let newComment = {
-//     id: 6,
-//     userName: "Alex",
-//     comment: "Wow"
-//   };
-
-//   posts.push(newComment);
-// };
+  commentForm.style.display = "none";
+  textComment.value = "";
+} );

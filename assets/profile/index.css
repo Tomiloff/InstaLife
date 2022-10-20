@@ -332,20 +332,27 @@
   margin-right: 15px;
 }
 
-.post-description-like,
-.post-description-title {
+.post-description-like {
   font-weight: bold;
   margin-bottom: 15px;
 }
 
-.post-description-story,
-.post-description-comment {
+.post-description-title {
+  font-weight: bold;
+}
+
+.post-description-story {
   line-height: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.post-description-comment {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--grey);
 }
 
 #post-description-form {
-  display: flex;
+  display: none;
   flex-direction: column;
 }
 

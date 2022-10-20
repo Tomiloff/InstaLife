@@ -11,6 +11,11 @@ export const posts = [
         userName: "Anna",
         comment: "Harmony of nature"
       },
+      {
+        id: 2,
+        userName: "Scott",
+        comment: "Literally floating in the clouds"
+      },
     ]
   },
   {
@@ -24,6 +29,11 @@ export const posts = [
         id: 1,
         userName: "Phil",
         comment: "Marvelous!"
+      },
+      {
+        id: 2,
+        userName: "Carl",
+        comment: "That's how we live..."
       },
     ]
   },
@@ -39,6 +49,11 @@ export const posts = [
         userName: "Jak",
         comment: "Aesthetics"
       },
+      {
+        id: 2,
+        userName: "Daniel",
+        comment: "Incredible combination of taste and style!"
+      },
     ]
   },
   {
@@ -53,6 +68,11 @@ export const posts = [
         userName: "Anton",
         comment: "Super"
       },
+      {
+        id: 2,
+        userName: "Ashley",
+        comment: "Can you tell me the price to order?"
+      },
     ]
   },
   {
@@ -66,6 +86,11 @@ export const posts = [
         id: 1,
         userName: "Sara",
         comment: "What you need!"
+      },
+      {
+        id: 2,
+        userName: "Alan",
+        comment: "The lawn is good..."
       },
     ]
   },
