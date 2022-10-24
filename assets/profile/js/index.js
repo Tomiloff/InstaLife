@@ -125,7 +125,10 @@ const addPhoto = () => {
 const inputTextForm = document.querySelector(".loading-control-comment");
 
 let submitText = () => {
-  posts[posts.length - 1].description = inputTextForm.value;
+  let listPosts = JSON.parse( localStorage.getItem("posts") );
+  listPosts[listPosts.length - 1].description = inputTextForm.value;
+
+  localStorage.setItem( `posts`, JSON.stringify(listPosts) );
 
   inputTextForm.value = "";
 };
@@ -226,12 +229,15 @@ modal.addEventListener( "click", (e) => {
 const btnLike = document.querySelector("#action-btn-heart");
 
 btnLike.addEventListener( "click", (e) => {
+  let listPosts = JSON.parse( localStorage.getItem("posts") );
   let attrId = e.target.closest(".modal-profile-post").id;
-  let indexObj = posts[attrId - 1];
+  let indexObj = listPosts[attrId - 1];
   let count = 1;
 
   indexObj.like = indexObj.like + count;
   likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+
+  localStorage.setItem( `posts`, JSON.stringify(listPosts) );
 } );
 
 
@@ -247,8 +253,9 @@ const textComment = document.querySelector(".post-description-textarea");
 const btnCommentConfirm = document.querySelector(".post-description-btn");
 
 btnCommentConfirm.addEventListener( "click", (e) => {
+  let listPosts = JSON.parse( localStorage.getItem("posts") );
   let attrId = e.target.closest(".modal-profile-post").id;
-  let indexObj = posts[attrId - 1].comments;
+  let indexObj = listPosts[attrId - 1].comments;
   let newTextComment = textComment.value;
 
   let count = indexObj.length;
@@ -268,4 +275,6 @@ btnCommentConfirm.addEventListener( "click", (e) => {
 
   commentForm.style.display = "none";
   textComment.value = "";
+
+  localStorage.setItem( `posts`, JSON.stringify(listPosts) );
 } );
