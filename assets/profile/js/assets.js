@@ -1,3 +1,5 @@
+"use strict";
+
 export const posts = [
   {
     id: 1, 
