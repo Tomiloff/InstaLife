@@ -25,16 +25,22 @@ showTime();
 
 import {posts} from "./assets.js";
 
+if (JSON.parse(localStorage.getItem("posts")) == null) {
+  localStorage.setItem( `posts`, JSON.stringify(posts) );
+}
+
 
 const listPhoto = document.querySelector(".page-profile-content");
 
 const showPosts = () => {
   listPhoto.innerHTML = "";
 
-  posts.map( (index) => {
+  let postsStorage = JSON.parse(localStorage.getItem("posts"));
+
+  postsStorage.map( (index) => {
     let newPhoto = `<div id="${index.id}" class="profile-content-wrap">
-                    <img src="${index.src}" 
-                    alt="Фото-публикация"></div>`;
+                      <img src="${index.src}" alt="Фото-публикация">
+                    </div>`;
 
     listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
   } );
@@ -98,7 +104,8 @@ const cancelStyle = () => {
 
 
 const addPhoto = () => {
-  let count = posts.length;
+  let listPosts = JSON.parse( localStorage.getItem("posts") ); 
+  let count = listPosts.length;
   count ++;
 
   let newPost = {
@@ -110,7 +117,8 @@ const addPhoto = () => {
     comments: []
   };
 
-  posts.push(newPost);
+  listPosts.push(newPost);
+  localStorage.setItem( `posts`, JSON.stringify(listPosts) );
 };
 
 
@@ -181,8 +189,9 @@ const likePhoto = document.querySelector(".post-description-like");
 const sectionComments = document.querySelector(".post-description-section");
 
 listPhoto.addEventListener( "click", (e) => {
+  let listPosts = JSON.parse( localStorage.getItem("posts") );
   let attrId = e.target.parentElement.id;
-  let indexObj = posts[attrId - 1];
+  let indexObj = listPosts[attrId - 1];
 
   modalPost.id = indexObj.id;
   postImg.src = indexObj.src;
@@ -190,7 +199,10 @@ listPhoto.addEventListener( "click", (e) => {
   descriptionPhoto.innerHTML = `<b>${indexObj.userName}</b> ${indexObj.description}`;
 
   for (let key of indexObj.comments) {
-    let newComment = `<p class="post-description-comment"><b>${key.userName}</b> ${key.comment}</p>`;
+    let newComment = `<p class="post-description-comment">
+                        <b>${key.userName}</b> ${key.comment}
+                      </p>`;
+                      
     sectionComments.insertAdjacentHTML("afterbegin", newComment);
   }
 
@@ -241,17 +253,17 @@ btnCommentConfirm.addEventListener( "click", (e) => {
 
   let count = indexObj.length;
     count ++;
-
   let newObjComment = {
     id: count,
     userName: "name",
     comment: newTextComment
   };
-  
   indexObj.push(newObjComment);
   
+  let newComment = `<p class="post-description-comment">
+                      <b>${newObjComment.userName}</b> ${newTextComment}
+                    </p>`;
 
-  let newComment = `<p class="post-description-comment"><b>${newObjComment.userName}</b> ${newTextComment}</p>`
   sectionComments.insertAdjacentHTML("afterbegin", newComment);
 
   commentForm.style.display = "none";
