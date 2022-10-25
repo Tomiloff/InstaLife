@@ -22,11 +22,11 @@ listUsers.map( (index) => {
 let listUsersItems = document.querySelectorAll(".search-list-item");
 
 searchInput.oninput = () => {
-  let val = searchInput.value.trim();
+  let val = searchInput.value.trim().toLowerCase();
 
   if (val != "") {
     listUsersItems.forEach( (elem) => {
-      if (elem.innerText.search(val) != -1) {
+      if (elem.innerText.toLowerCase().search(val) != -1) {
         elem.classList.add("search-list-item-show");
       } else {
         elem.classList.remove("search-list-item-show");

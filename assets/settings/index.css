@@ -78,10 +78,12 @@
 .settings-section-input:focus,
 .settings-section-textarea:focus {
   border-color: var(--blue);
+  transition: 0.3s;
 }
 
 .settings-section-input:required:valid {
   border-color: #55cf3f;
+  transition: 0.3s;
 }
 
 .form-error {
@@ -93,6 +95,7 @@
 
 input:invalid:not(:placeholder-shown) {
   border-color: var(--red);
+  transition: 0.3s;
 }
 
 .settings-section-input:invalid:not(:placeholder-shown) + 

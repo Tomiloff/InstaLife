@@ -18,6 +18,11 @@
   text-align: center;
 }
 
+.main-search-input:focus {
+  border-color: var(--blue);
+  transition: 0.3s;
+}
+
 .main-search-btn {
   position: absolute;
   top: 9px;
