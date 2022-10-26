@@ -27,7 +27,7 @@ body {
   margin-bottom: 35px;
 }
 
-.authorization-form input, button {
+.authorization-form input, #check {
   text-align: center;
   border-radius: 24px;
   margin-bottom: 5px;
@@ -49,13 +49,15 @@ body {
 }
 
 .inputValid {
-  border-color: #2ecc71;
+  border-color: rgb(46, 204, 113);
   transition: 0.25s;
+  box-shadow: 0px 0px 10px 2px rgba(46, 204, 113, 0.2);
 }
 
 .inputInvalid {
   border-color: var(--red);
   transition: 0.25s;
+  box-shadow: 0px 0px 10px 2px rgba(220, 86, 91, 0.2);
 }
 
 .loginError,
@@ -73,14 +75,16 @@ body {
   transition: 0.25s;
 }
 
-.authorization-form button {
+#check {
   padding: 12px 60px;
   cursor: pointer;
   border: 2px solid #2ecc71;
 }
 
-.authorization-form button:hover {
+#check:hover {
   background-color: #2ecc71;
+  box-shadow: 0px 0px 10px 2px rgba(46, 204, 113, 0.2);
+  color: white;
 }
 
 

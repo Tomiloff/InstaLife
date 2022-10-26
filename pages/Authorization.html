@@ -17,9 +17,9 @@
     <form action="Profile.html" class="authorization-form" novalidate>
       <h1>InstaLife</h1>
       <h2>Войти в аккаунт</h2>
-      <input type="text" placeholder="Логин" required class="login">
+      <input type="text" placeholder="Логин" maxlength ="25" class="login" required>
       <p class="loginError">Неверный логин</p>
-      <input type="text" placeholder="Пароль" required class="password">
+      <input type="password" placeholder="Пароль" maxlength ="30" class="password" required>
       <p class="passwordError">Неверный пароль</p>
       <button id="check" type="submit">Войти</button>
     </form>

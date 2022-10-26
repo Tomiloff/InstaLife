@@ -25,7 +25,7 @@ showTime();
 
 import {posts} from "./assets.js";
 
-if (JSON.parse(localStorage.getItem("posts")) == null) {
+if ( JSON.parse( localStorage.getItem("posts") ) == null ) {
   localStorage.setItem( `posts`, JSON.stringify(posts) );
 }
 

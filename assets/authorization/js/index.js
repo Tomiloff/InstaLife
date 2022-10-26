@@ -10,15 +10,21 @@ const loginError = document.querySelector(".loginError");
 const passwordError = document.querySelector(".passwordError");
 
 validationForm.addEventListener( "submit", (e) => {
+  if ( JSON.parse( localStorage.getItem("listAccaunts") ) == null ) {
+    localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
+  }
+
   let login = loginInput.value;
   let password = passwordInput.value;
+  let accauntsStorage = JSON.parse( localStorage.getItem("listAccaunts") );
 
-  let foundUser = listAccaunts.find( (el) => el.login == login);
+  let foundUser = accauntsStorage.find( (el) => el.login == login);
 
   if (login == "") {
     loginError.innerText = "Введите логин";
 
     loginError.classList.add("loginErrorShow");
+    loginInput.classList.add("inputInvalid");
 
     e.preventDefault();
   } 
@@ -34,6 +40,7 @@ validationForm.addEventListener( "submit", (e) => {
     passwordError.innerText = "Введите пароль";
 
     passwordError.classList.add("passwordErrorShow");
+    passwordInput.classList.add("inputInvalid");
     loginInput.classList.add("inputValid");
 
     e.preventDefault();
@@ -46,6 +53,9 @@ validationForm.addEventListener( "submit", (e) => {
     passwordInput.classList.add("inputInvalid");
 
     e.preventDefault();
+  } 
+  else {
+    localStorage.removeItem("redirect");
   }
 });
 
