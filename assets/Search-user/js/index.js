@@ -3,15 +3,15 @@
 import {listUsers} from "./assets.js";
 
 
-let searchInput = document.querySelector(".main-search-input");
-let btnSearch = document.querySelector(".main-search-btn");
+const searchInput = document.querySelector(".main-search-input");
+const btnSearch = document.querySelector(".main-search-btn");
 
 searchInput.addEventListener( "focus", () => {
   btnSearch.classList.add("main-search-btn-focus");
 });
 
 
-let searchList = document.querySelector(".search-list");
+const searchList = document.querySelector(".search-list");
 
 listUsers.map( (index) => {
   let userItem = `<li class="search-list-item">${index.login}</li>`;
@@ -19,7 +19,7 @@ listUsers.map( (index) => {
   searchList.insertAdjacentHTML("afterbegin", userItem);
 });
 
-let listUsersItems = document.querySelectorAll(".search-list-item");
+const listUsersItems = document.querySelectorAll(".search-list-item");
 
 searchInput.oninput = () => {
   let val = searchInput.value.trim().toLowerCase();
