@@ -56,6 +56,17 @@ validationForm.addEventListener( "submit", (e) => {
   } 
   else {
     localStorage.removeItem("redirect");
+
+    let activeUser = {
+      id: foundUser.id,
+      login: foundUser.login,
+      password: foundUser.password,
+      nameSurname: foundUser.nameSurname,
+      url: foundUser.url,
+      description: foundUser.description
+    };
+
+    localStorage.setItem( `activeUser`, JSON.stringify(activeUser) );
   }
 });
 

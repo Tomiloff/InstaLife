@@ -445,6 +445,12 @@
     border-radius: 3px;
   }
 
+  .profile-btn-edit:hover {
+    color: var(--white);
+    background-color: #4094efc4;
+    transition: 0.15s;
+  }
+
   .profile-central-line {
     margin: 5px 0;
     border-top: 0;

@@ -195,11 +195,12 @@ listPhoto.addEventListener( "click", (e) => {
   let listPosts = JSON.parse( localStorage.getItem("posts") );
   let attrId = e.target.parentElement.id;
   let indexObj = listPosts[attrId - 1];
+  let activeUser = JSON.parse( localStorage.getItem("activeUser") );
 
   modalPost.id = indexObj.id;
   postImg.src = indexObj.src;
   likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
-  descriptionPhoto.innerHTML = `<b>${indexObj.userName}</b> ${indexObj.description}`;
+  descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${indexObj.description}`;
 
   for (let key of indexObj.comments) {
     let newComment = `<p class="post-description-comment">
@@ -257,6 +258,7 @@ btnCommentConfirm.addEventListener( "click", (e) => {
   let attrId = e.target.closest(".modal-profile-post").id;
   let indexObj = listPosts[attrId - 1].comments;
   let newTextComment = textComment.value;
+  let activeUser = JSON.parse( localStorage.getItem("activeUser") );
 
   let count = indexObj.length;
     count ++;
@@ -268,7 +270,7 @@ btnCommentConfirm.addEventListener( "click", (e) => {
   indexObj.push(newObjComment);
   
   let newComment = `<p class="post-description-comment">
-                      <b>${newObjComment.userName}</b> ${newTextComment}
+                      <b>${activeUser.login}</b> ${newTextComment}
                     </p>`;
 
   sectionComments.insertAdjacentHTML("afterbegin", newComment);
@@ -278,3 +280,18 @@ btnCommentConfirm.addEventListener( "click", (e) => {
 
   localStorage.setItem( `posts`, JSON.stringify(listPosts) );
 } );
+
+
+const userName = document.querySelector(".description-name-title");
+userName.innerHTML = getUserActive.login;
+
+const nameSurname = document.querySelector(".description-aside-title");
+nameSurname.innerHTML = getUserActive.nameSurname;
+
+const urlUser = document.querySelector(".description-aside-link");
+urlUser.innerHTML = getUserActive.url;
+
+const aboutUser = document.querySelectorAll(".aside-title-about");
+aboutUser.forEach( el => {
+  el.innerHTML = getUserActive.description;
+});

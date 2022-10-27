@@ -26,11 +26,11 @@
         </form>
         <time id="clock"></time>
         <div class="header-bar-menu flex">
-          <form action="Authorization.html">
+          <form action="Profile.html">
             <button>
-              <img id="btnTopExit" src="../assets/all-images/icons/house.svg" alt="Иконка-выход">
+              <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="bar-menu-avatar">
             </button>
-          </form>
+          </form> 
           <form action="Search-user.html">
             <button>
               <img src="../assets/all-images/icons/search.svg" alt="Иконка-поиск">
@@ -42,18 +42,20 @@
           <button>
             <img src="../assets/all-images/icons/message.svg" alt="Иконка-сообщение">
           </button>
-          <form action="Profile.html">
+          <form action="Authorization.html">
             <button>
-              <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="bar-menu-avatar">
+              <img id="btnTopExit" src="../assets/all-images/icons/house.svg" alt="Иконка-выход">
             </button>
-          </form>   
+          </form>  
         </div>
       </div>
     </header>
     <div class="aside-bar-menu">
-      <button>
-        <img src="../assets/all-images/icons/settings.svg" alt="Иконка-настройки">
-      </button>
+      <form action="Settings.html">
+        <button>
+          <img src="../assets/all-images/icons/settings.svg" alt="Иконка-настройки">
+        </button>
+      </form>
       <button class="bar-menu-name">
         <h2 class="menu-name-title">name</h2>
         <img src="../assets/all-images/icons/arrow.svg" alt="Иконка-стрелка">        
@@ -69,7 +71,7 @@
         </div>
         <div class="profile-info-description">
           <div class="info-description-name flex">
-            <h2>name</h2>
+            <h2 class="description-name-title">name</h2>
             <form action="Settings.html">
               <button class="description-name-btn">
                 <p>Редактировать профиль</p>
@@ -93,7 +95,7 @@
           </div>
           <div class="info-description-aside">
             <h3 class="description-aside-title">Name Surname</h3>
-            <p>
+            <p class="aside-title-about">
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.
             </p>
             <a href="" class="description-aside-link">
@@ -104,7 +106,7 @@
       </div>
       <div class="info-aside-mobile">
         <h3 class="aside-mobile-title">Name Surname</h3>
-        <p>
+        <p class="aside-title-about">
           Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been theindustry's standard dummy text.
         </p>
         <a href="">
@@ -112,9 +114,7 @@
         </a>
       </div>
       <form action="Settings.html">
-        <button class="profile-btn-edit">
-          <p>Редактировать профиль</p>
-        </button>
+        <button class="profile-btn-edit">Редактировать профиль</button>
       </form>
       <div class="profile-central-line">
         <div class="central-line-text flex">

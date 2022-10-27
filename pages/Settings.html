@@ -25,9 +25,9 @@
           </button>
         </form>
         <div class="header-bar-menu flex">
-          <form action="Authorization.html">
+          <form action="Profile.html">
             <button>
-              <img id="btnTopExit" src="../assets/all-images/icons/house.svg" alt="Иконка-выход">
+              <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="bar-menu-avatar">
             </button>
           </form>
           <form action="Search-user.html">
@@ -41,9 +41,9 @@
           <button>
             <img src="../assets/all-images/icons/message.svg" alt="Иконка-сообщение">
           </button>
-          <form action="Profile.html">
+          <form action="Authorization.html">
             <button>
-              <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="bar-menu-avatar">
+              <img id="btnTopExit" src="../assets/all-images/icons/house.svg" alt="Иконка-выход">
             </button>
           </form>  
         </div>
@@ -71,18 +71,18 @@
           <button>Изменить фото профиля</button>
         </div>
       </div>
-      <form action="" class="profile-settings"> 
+      <form class="profile-settings"> 
         <div class="profile-settings-section flex">
           <label for="nam-s" class="settings-section-item flex">Имя<br>Фамилия</label>
           <div class="settings-section-bar">
-            <input id="nam-s" type="text" required placeholder="Name Surname" class="settings-section-input">
+            <input id="nam-s" type="text" placeholder="Name Surname" class="settings-section-input" required>
             <span class="form-error">Необходимо указать имя и фамилию</span>
           </div>
         </div>
         <div class="profile-settings-section flex">
           <label for="login" class="settings-section-item flex">login<br>пользователя</label>
           <div class="settings-section-bar">
-            <input id="login" type="text" required placeholder="name" class="settings-section-input">
+            <input id="login" type="text" placeholder="name" class="settings-section-input" required>
             <span class="form-error">Необходимо указать login</span>
           </div>
         </div>
@@ -102,14 +102,14 @@
         <div class="profile-settings-section flex">
           <label for="email" class="settings-section-item flex">Эл. адрес</label>
           <div class="settings-section-bar">
-            <input id="email" type="email" name="email" required placeholder="...@mail.ru" class="settings-section-input">
+            <input id="email" type="email" name="email" placeholder="...@mail.ru" class="settings-section-input">
             <span class="form-error">Укажите в формате example@site.com</span>
           </div>
         </div>
         <div class="profile-settings-section flex">
           <label for="tel" class="settings-section-item flex">Номер телефона</label>
           <div class="settings-section-bar">
-            <input id="tel" type="tel" required placeholder="Телефон" pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" minlength="18" maxlength="18" class="settings-section-input"/>
+            <input id="tel" type="tel" placeholder="Телефон" pattern="[\+]\d{1}\s[\(]\d{3}[\)]\s\d{3}[\-]\d{2}[\-]\d{2}" minlength="18" maxlength="18" class="settings-section-input"/>
             <span class="form-error">Укажите в формате +7 (123) 456-78-90</span>
           </div>
         </div>
@@ -121,7 +121,20 @@
         </div>
         <div class="profile-settings-section flex">
           <div class="settings-section-item flex"></div>
-          <button type="submit" class="item-btn-submit">Отправить</button>
+          <button type="submit" class="item-btn-submit">Подтвердить</button>
+        </div>
+      </form>
+      <form class="profile-password">
+        <div class="profile-password-section flex">
+          <label for="password" class="password-section-item flex">Новый пароль</label>
+          <div class="password-section-bar">
+            <input id="password" type="text" placeholder="Пароль" minlength="6" maxlength="10" class="password-section-input" required>
+            <span class="form-error">Количесвто симвлолов от 6 до 10</span>
+          </div>
+        </div>
+        <div class="profile-password-section flex">
+          <div class="password-section-item flex"></div>
+          <button type="submit" class="item-btn-submit">Сменить пароль</button>
         </div>
       </form>
     </main>
