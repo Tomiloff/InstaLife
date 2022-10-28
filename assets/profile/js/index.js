@@ -103,6 +103,28 @@ const cancelStyle = () => {
 };
 
 
+const statisticPosts = document.querySelector(".statistic-publications");
+
+const countPublications = () => {
+  let listAccaunts = JSON.parse( localStorage.getItem("listAccaunts") );
+  let activeUser = JSON.parse( localStorage.getItem("activeUser") );
+  let listPosts = JSON.parse( localStorage.getItem("posts") ); 
+
+  let userFound = listAccaunts.find( el => el.id == activeUser.id);
+
+  let countPosts = listPosts.length;
+
+  userFound.publications = countPosts;
+  activeUser.publications = countPosts;
+  statisticPosts.innerHTML = activeUser.publications;
+
+  localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
+  localStorage.setItem( `activeUser`, JSON.stringify(activeUser) ); 
+};
+
+countPublications();
+
+
 const addPhoto = () => {
   let listPosts = JSON.parse( localStorage.getItem("posts") ); 
   let count = listPosts.length;
@@ -119,6 +141,7 @@ const addPhoto = () => {
 
   listPosts.push(newPost);
   localStorage.setItem( `posts`, JSON.stringify(listPosts) );
+  countPublications();
 };
 
 
@@ -264,7 +287,7 @@ btnCommentConfirm.addEventListener( "click", (e) => {
     count ++;
   let newObjComment = {
     id: count,
-    userName: "name",
+    userName: activeUser.login,
     comment: newTextComment
   };
   indexObj.push(newObjComment);
@@ -281,17 +304,29 @@ btnCommentConfirm.addEventListener( "click", (e) => {
   localStorage.setItem( `posts`, JSON.stringify(listPosts) );
 } );
 
-
+const activeUser = JSON.parse( localStorage.getItem("activeUser") );
 const userName = document.querySelector(".description-name-title");
-userName.innerHTML = getUserActive.login;
 
-const nameSurname = document.querySelector(".description-aside-title");
-nameSurname.innerHTML = getUserActive.nameSurname;
+userName.innerHTML = activeUser.login;
+statisticPosts.innerHTML = activeUser.publications;
 
-const urlUser = document.querySelector(".description-aside-link");
-urlUser.innerHTML = getUserActive.url;
+const nameSurname = document.querySelectorAll(".description-aside-title");
+nameSurname.forEach( el => {
+  el.innerHTML = activeUser.nameSurname;
+});
+
+
+const urlUser = document.querySelectorAll(".description-aside-link");
+urlUser.forEach( el => {
+  el.innerHTML = activeUser.url;
+});
+
 
 const aboutUser = document.querySelectorAll(".aside-title-about");
 aboutUser.forEach( el => {
-  el.innerHTML = getUserActive.description;
+  el.innerHTML = activeUser.description;
 });
+
+
+const userAvatar = document.querySelector(".info-avatar-img");
+userAvatar.src = activeUser.avatar;

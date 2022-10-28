@@ -84,11 +84,11 @@
   line-height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 22px;
 }
 
 
-.description-aside-title,
-.aside-mobile-title {
+.description-aside-title {
   font-weight: bold;
 }
 

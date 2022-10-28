@@ -2,6 +2,10 @@
 
 import {listAccaunts} from "./assets.js";
 
+if ( JSON.parse( localStorage.getItem("listAccaunts") ) == null ) {
+  localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
+}
+
 
 const loginInput = document.querySelector(".login");
 const passwordInput = document.querySelector(".password");
@@ -10,10 +14,6 @@ const loginError = document.querySelector(".loginError");
 const passwordError = document.querySelector(".passwordError");
 
 validationForm.addEventListener( "submit", (e) => {
-  if ( JSON.parse( localStorage.getItem("listAccaunts") ) == null ) {
-    localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
-  }
-
   let login = loginInput.value;
   let password = passwordInput.value;
   let accauntsStorage = JSON.parse( localStorage.getItem("listAccaunts") );
@@ -55,15 +55,18 @@ validationForm.addEventListener( "submit", (e) => {
     e.preventDefault();
   } 
   else {
-    localStorage.removeItem("redirect");
-
     let activeUser = {
       id: foundUser.id,
       login: foundUser.login,
       password: foundUser.password,
       nameSurname: foundUser.nameSurname,
       url: foundUser.url,
-      description: foundUser.description
+      description: foundUser.description,
+      email: foundUser.email,
+      phoneNumber: foundUser.phoneNumber,
+      gender: foundUser.gender,
+      avatar: foundUser.avatar,
+      publications: foundUser.publications
     };
 
     localStorage.setItem( `activeUser`, JSON.stringify(activeUser) );

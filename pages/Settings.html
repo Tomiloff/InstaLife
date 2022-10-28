@@ -27,7 +27,7 @@
         <div class="header-bar-menu flex">
           <form action="Profile.html">
             <button>
-              <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="bar-menu-avatar">
+              <img src="" alt="Аватар пользователя" class="bar-menu-avatar">
             </button>
           </form>
           <form action="Search-user.html">
@@ -64,11 +64,12 @@
     <main>
       <div class="settings-avatar flex">
         <div class="settings-avatar-wrap flex">
-          <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="avatar-wrap-img">
+          <img src="" alt="Аватар пользователя" class="avatar-wrap-img">
         </div>
         <div class="settings-section-control">
           <h2 class="section-control-title">name</h2>
-          <button>Изменить фото профиля</button>
+          <input type="file" id="file" class="section-control-input" oninput="download(this)">
+          <label for="file" class="section-control-btn">Изменить фото профиля</label>
         </div>
       </div>
       <form class="profile-settings"> 
