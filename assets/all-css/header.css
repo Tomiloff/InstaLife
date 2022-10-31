@@ -17,7 +17,7 @@
 .header-bar-menu {
   justify-content: space-between;
   align-items: center;
-  max-width: 198px;
+  max-width: 176px;
 }
 
 .header-bar-menu button :active {
@@ -94,6 +94,31 @@
   .header-bar-logo,
   .header-bar-search {
     display: none;
+  }
+
+  #btnTopSettings :active,
+  #btnTopHeart :active {
+    width: 90%;
+  }
+
+  #btnTopArrow:hover:before,
+  #btnTopHeart:hover:before {
+    content: "Раздел в разработке";
+    position: fixed;
+    border-radius: 3%;
+    padding: 10px;
+    opacity: 0.6;
+    color: var(--white);
+    background-color: var(--black);
+    top: 40px;
+  }
+
+  #btnTopArrow:hover:before {
+    right: 36%;
+  }
+
+  #btnTopHeart:hover:before {
+    right: 5%;
   }
 
   #clock {

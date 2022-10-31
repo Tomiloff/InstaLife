@@ -351,6 +351,10 @@
   margin-bottom: 20px;
 }
 
+.post-description-story-hide {
+  display: none;
+}
+
 .post-description-comment {
   padding: 10px 0;
   border-bottom: 1px solid var(--grey);

@@ -131,8 +131,7 @@ const addPhoto = () => {
   count ++;
 
   let newPost = {
-    id: count, 
-    userName: 'name', 
+    id: count,  
     description: "", 
     src: imgWrap.src,
     like: 0,
@@ -149,7 +148,7 @@ const inputTextForm = document.querySelector(".loading-control-comment");
 
 let submitText = () => {
   let listPosts = JSON.parse( localStorage.getItem("posts") );
-  listPosts[listPosts.length - 1].description = inputTextForm.value;
+  listPosts[listPosts.length - 1].description = inputTextForm.value.trim();
 
   localStorage.setItem( `posts`, JSON.stringify(listPosts) );
 
@@ -223,7 +222,13 @@ listPhoto.addEventListener( "click", (e) => {
   modalPost.id = indexObj.id;
   postImg.src = indexObj.src;
   likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
-  descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${indexObj.description}`;
+
+  if (indexObj.description == "") {
+    descriptionPhoto.classList.add("post-description-story-hide");
+  } else {
+    descriptionPhoto.classList.remove("post-description-story-hide");
+    descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${indexObj.description}`;
+  }
 
   for (let key of indexObj.comments) {
     let newComment = `<p class="post-description-comment">
@@ -240,16 +245,6 @@ listPhoto.addEventListener( "click", (e) => {
 });
 
 
-modal.addEventListener( "click", (e) => {
-  let click = e.composedPath();
-
-  if ( !click.includes(popup) && !click.includes(modalPost) ) {
-    cancelStyle();
-    sectionComments.innerHTML = "";
-  }
-});
-
-
 const btnLike = document.querySelector("#action-btn-heart");
 
 btnLike.addEventListener( "click", (e) => {
@@ -258,10 +253,14 @@ btnLike.addEventListener( "click", (e) => {
   let indexObj = listPosts[attrId - 1];
   let count = 1;
 
-  indexObj.like = indexObj.like + count;
-  likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
-
-  localStorage.setItem( `posts`, JSON.stringify(listPosts) );
+  if (indexObj.myLike == "") {
+    indexObj.myLike = count;
+    indexObj.like = indexObj.like + count;
+  
+    likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+  
+    localStorage.setItem( `posts`, JSON.stringify(listPosts) );
+  } 
 } );
 
 
@@ -270,6 +269,12 @@ const commentForm = document.querySelector("#post-description-form");
 
 btnComment.addEventListener( "click", () => {
   commentForm.style.display = "flex";
+
+  let height = modalPost.scrollHeight;
+  modalPost.scrollTo({
+    top: height,
+    behavior: "smooth"
+});
 } );
 
 
@@ -280,35 +285,54 @@ btnCommentConfirm.addEventListener( "click", (e) => {
   let listPosts = JSON.parse( localStorage.getItem("posts") );
   let attrId = e.target.closest(".modal-profile-post").id;
   let indexObj = listPosts[attrId - 1].comments;
-  let newTextComment = textComment.value;
+  let newTextComment = textComment.value.trim();
   let activeUser = JSON.parse( localStorage.getItem("activeUser") );
 
-  let count = indexObj.length;
+  if (newTextComment == "") {
+    commentForm.style.display = "none";
+    textComment.value = "";
+  } else {
+    let count = indexObj.length;
     count ++;
-  let newObjComment = {
+    let newObjComment = {
     id: count,
     userName: activeUser.login,
     comment: newTextComment
-  };
-  indexObj.push(newObjComment);
+    };
+    indexObj.push(newObjComment);
   
-  let newComment = `<p class="post-description-comment">
+    let newComment = `<p class="post-description-comment">
                       <b>${activeUser.login}</b> ${newTextComment}
-                    </p>`;
+                      </p>`;
+  
+    sectionComments.insertAdjacentHTML("afterbegin", newComment);
+  
+    commentForm.style.display = "none";
+    textComment.value = "";
+  
+    localStorage.setItem( `posts`, JSON.stringify(listPosts) );
+  }
+});
 
-  sectionComments.insertAdjacentHTML("afterbegin", newComment);
 
-  commentForm.style.display = "none";
-  textComment.value = "";
+modal.addEventListener( "click", (e) => {
+  let click = e.composedPath();
 
-  localStorage.setItem( `posts`, JSON.stringify(listPosts) );
-} );
+  if ( !click.includes(popup) && !click.includes(modalPost) ) {
+    cancelStyle();
+    sectionComments.innerHTML = "";
+    commentForm.style.display = "none";
+    textComment.value = "";
+  }
+});
+
 
 const activeUser = JSON.parse( localStorage.getItem("activeUser") );
 const userName = document.querySelector(".description-name-title");
 
 userName.innerHTML = activeUser.login;
 statisticPosts.innerHTML = activeUser.publications;
+
 
 const nameSurname = document.querySelectorAll(".description-aside-title");
 nameSurname.forEach( el => {
