@@ -6,7 +6,7 @@ export const posts = [
     description: 'Картина дерева', 
     src: '../assets/profile/images/img-content-1.jpg',
     like: 18,
-    myLike: "",
+    myLike: 0,
     comments: [
       {
         id: 1,
@@ -25,7 +25,7 @@ export const posts = [
     description: 'В мире животных', 
     src: '../assets/profile/images/img-content-2.jpg',
     like: 5,
-    myLike: "",
+    myLike: 0,
     comments: [
       {
         id: 1,
@@ -44,7 +44,7 @@ export const posts = [
     description: 'Невероятная архитектура здания Венгерского парламента', 
     src: '../assets/profile/images/img-content-3.jpg',
     like: 10,
-    myLike: "",
+    myLike: 0,
     comments: [
       {
         id: 1,
@@ -63,7 +63,7 @@ export const posts = [
     description: 'Клубничный торт на Ваш праздник', 
     src: '../assets/profile/images/img-content-4.jpg',
     like: 69,
-    myLike: "",
+    myLike: 0,
     comments: [
       {
         id: 1,
@@ -82,7 +82,7 @@ export const posts = [
     description: 'Всё для сада и огорода', 
     src: '../assets/profile/images/img-content-5.jpeg',
     like: 34,
-    myLike: "",
+    myLike: 0,
     comments: [
       {
         id: 1,
@@ -101,7 +101,7 @@ export const posts = [
     description: 'Силуэт дерева с раскидистой кроной и с солнцем по центру', 
     src: '../assets/profile/images/img-content-6.jpg',
     like: 78,
-    myLike: "",
+    myLike: 0,
     comments: [
       {
         id: 1,

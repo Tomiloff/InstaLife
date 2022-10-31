@@ -5,7 +5,7 @@ export const listAccaunts = [
     id: 1,
     login: "Homer",
     password: "443355",
-    nameSurname: "Hover Simpson",
+    nameSurname: "Homer Simpson",
     url: "http://Homer.ru",
     description: `Инспектор по технике безопасности на Спрингфилдской АЭС, технический руководитель.`,
     email: "Homer@mail.ru",

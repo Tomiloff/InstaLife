@@ -253,7 +253,7 @@ btnLike.addEventListener( "click", (e) => {
   let indexObj = listPosts[attrId - 1];
   let count = 1;
 
-  if (indexObj.myLike == "") {
+  if (indexObj.myLike == 0) {
     indexObj.myLike = count;
     indexObj.like = indexObj.like + count;
   

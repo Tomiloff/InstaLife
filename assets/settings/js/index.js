@@ -22,11 +22,12 @@ function download(input) {
 
   reader.onload = function() {
     userFound.avatar = reader.result;
-    activeUser.avatar = reader.result; 
-  }
+    activeUser.avatar = reader.result;
 
-  localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
-  localStorage.setItem( `activeUser`, JSON.stringify(activeUser) ); 
+    localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
+    localStorage.setItem( `activeUser`, JSON.stringify(activeUser) ); 
+    window.location.reload();
+  }
 }
 
 
