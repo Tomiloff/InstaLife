@@ -30,43 +30,57 @@ function download(input) {
 }
 
 
-const settingForm = document.querySelector(".profile-settings");
 const nameSurnameInput = document.querySelector("#nam-s");
+nameSurnameInput.value = activeUser.nameSurname;
+
 const loginInput = document.querySelector("#login");
+loginInput.value = activeUser.login;
+
 const urlInput = document.querySelector("#url");
+urlInput.value = activeUser.url;
+
 const aboutInput = document.querySelector("#about-m-f");
+aboutInput.value = activeUser.description;
+
 const emailInput = document.querySelector("#email");
+emailInput.value = activeUser.email;
+
 const phoneNumberInput = document.querySelector("#tel");
+phoneNumberInput.value = activeUser.phoneNumber;
+
 const genderInput = document.querySelector("#gender");
+genderInput.value = activeUser.gender;
+
+const settingForm = document.querySelector(".profile-settings");
 
 settingForm.addEventListener( "submit", () => {
   let userFound = listAccaunts.find( el => el.id == activeUser.id);
 
-  let newNameSurname = nameSurnameInput.value;
+  let newNameSurname = nameSurnameInput.value.trim();
   userFound.nameSurname = newNameSurname;
   activeUser.nameSurname = newNameSurname;
 
-  let newLogin = loginInput.value;
+  let newLogin = loginInput.value.trim();
   userFound.login = newLogin;
   activeUser.login = newLogin;
 
-  let newUrl = urlInput.value;
+  let newUrl = urlInput.value.trim();
   userFound.url = newUrl;
   activeUser.url = newUrl;
 
-  let newDescription = aboutInput.value;
+  let newDescription = aboutInput.value.trim();
   userFound.description = newDescription;
   activeUser.description = newDescription;
 
-  let newEmail = emailInput.value;
+  let newEmail = emailInput.value.trim();
   userFound.email = newEmail;
   activeUser.email = newEmail;
 
-  let newPhoneNumber = phoneNumberInput.value;
+  let newPhoneNumber = phoneNumberInput.value.trim();
   userFound.phoneNumber = newPhoneNumber;
   activeUser.phoneNumber = newPhoneNumber;
 
-  let newGender = genderInput.value;
+  let newGender = genderInput.value.trim();
   userFound.gender = newGender;
   activeUser.gender = newGender;
 
@@ -75,8 +89,10 @@ settingForm.addEventListener( "submit", () => {
 });
 
 
-const passwordForm = document.querySelector(".profile-password");
 const passwordInput = document.querySelector(".password-section-input");
+passwordInput.value = activeUser.password;
+
+const passwordForm = document.querySelector(".profile-password");
 
 passwordForm.addEventListener( "submit", () => {
   let userFound = listAccaunts.find( el => el.password == activeUser.password);
