@@ -2,7 +2,7 @@
   <img src="/assets/all-images/Covers/Top-cover.svg" alt="Project-logo" title="InstaLife" width="800px">
 </p>
 
-# InstaLife
+# *InstaLife*
 
 ## Содержание
 
