@@ -40,7 +40,7 @@
   display: none;
 }
 
-#clock {
+.clock {
   font-size: 16px;
   font-weight: bold;
 }
@@ -96,13 +96,13 @@
     display: none;
   }
 
-  #btnTopSettings :active,
-  #btnTopHeart :active {
+  .bar-menu-heart :active,
+  .bar-menu-settings :active {
     width: 90%;
   }
 
-  #btnTopArrow:hover:before,
-  #btnTopHeart:hover:before {
+  .bar-menu-name:hover:before,
+  .bar-menu-heart:hover:before {
     content: "Раздел в разработке";
     position: fixed;
     border-radius: 3%;
@@ -113,15 +113,15 @@
     top: 40px;
   }
 
-  #btnTopArrow:hover:before {
+  .bar-menu-name:hover:before {
     right: 36%;
   }
 
-  #btnTopHeart:hover:before {
+  .bar-menu-heart:hover:before {
     right: 5%;
   }
 
-  #clock {
+  .clock {
     display: none;
   }
   

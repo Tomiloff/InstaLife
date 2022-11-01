@@ -14,18 +14,18 @@ const btnChangeAvatar = document.querySelector(".section-control-btn");
 const uploaderImg = document.querySelector(".section-control-input");
 
 function download(input) {
-  let userFound = listAccaunts.find( el => el.id == activeUser.id);
+  const userFound = listAccaunts.find( el => el.id == activeUser.id);
 
-  let file = input.files[0];
-  let reader = new FileReader();
+  const file = input.files[0];
+  const reader = new FileReader();
   reader.readAsDataURL(file);
 
   reader.onload = function() {
     userFound.avatar = reader.result;
     activeUser.avatar = reader.result;
 
-    localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
-    localStorage.setItem( `activeUser`, JSON.stringify(activeUser) ); 
+    localStorage.setItem( 'listAccaunts', JSON.stringify(listAccaunts) );
+    localStorage.setItem( 'activeUser', JSON.stringify(activeUser) ); 
     window.location.reload();
   }
 }
@@ -55,38 +55,38 @@ genderInput.value = activeUser.gender;
 const settingForm = document.querySelector(".profile-settings");
 
 settingForm.addEventListener( "submit", () => {
-  let userFound = listAccaunts.find( el => el.id == activeUser.id);
+  const userFound = listAccaunts.find( el => el.id == activeUser.id);
 
-  let newNameSurname = nameSurnameInput.value.trim();
+  const newNameSurname = nameSurnameInput.value.trim();
   userFound.nameSurname = newNameSurname;
   activeUser.nameSurname = newNameSurname;
 
-  let newLogin = loginInput.value.trim();
+  const newLogin = loginInput.value.trim();
   userFound.login = newLogin;
   activeUser.login = newLogin;
 
-  let newUrl = urlInput.value.trim();
+  const newUrl = urlInput.value.trim();
   userFound.url = newUrl;
   activeUser.url = newUrl;
 
-  let newDescription = aboutInput.value.trim();
+  const newDescription = aboutInput.value.trim();
   userFound.description = newDescription;
   activeUser.description = newDescription;
 
-  let newEmail = emailInput.value.trim();
+  const newEmail = emailInput.value.trim();
   userFound.email = newEmail;
   activeUser.email = newEmail;
 
-  let newPhoneNumber = phoneNumberInput.value.trim();
+  const newPhoneNumber = phoneNumberInput.value.trim();
   userFound.phoneNumber = newPhoneNumber;
   activeUser.phoneNumber = newPhoneNumber;
 
-  let newGender = genderInput.value.trim();
+  const newGender = genderInput.value.trim();
   userFound.gender = newGender;
   activeUser.gender = newGender;
 
-  localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
-  localStorage.setItem( `activeUser`, JSON.stringify(activeUser) );
+  localStorage.setItem( 'listAccaunts', JSON.stringify(listAccaunts) );
+  localStorage.setItem( 'activeUser', JSON.stringify(activeUser) );
 });
 
 
@@ -96,13 +96,13 @@ passwordInput.value = activeUser.password;
 const passwordForm = document.querySelector(".profile-password");
 
 passwordForm.addEventListener( "submit", () => {
-  let userFound = listAccaunts.find( el => el.password == activeUser.password);
+  const userFound = listAccaunts.find( el => el.password == activeUser.password);
 
-  let newPassword = passwordInput.value;
+  const newPassword = passwordInput.value;
 
   userFound.password = newPassword;
   activeUser.password = newPassword;
 
-  localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
-  localStorage.setItem( `activeUser`, JSON.stringify(activeUser) );
+  localStorage.setItem( 'listAccaunts', JSON.stringify(listAccaunts) );
+  localStorage.setItem( 'activeUser', JSON.stringify(activeUser) );
 });

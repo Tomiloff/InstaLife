@@ -3,7 +3,7 @@
 import {listAccaunts} from "./assets.js";
 
 if ( JSON.parse( localStorage.getItem("listAccaunts") ) == null ) {
-  localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
+  localStorage.setItem( 'listAccaunts', JSON.stringify(listAccaunts) );
 }
 
 
@@ -14,11 +14,11 @@ const loginError = document.querySelector(".loginError");
 const passwordError = document.querySelector(".passwordError");
 
 validationForm.addEventListener( "submit", (e) => {
-  let login = loginInput.value;
-  let password = passwordInput.value;
-  let accauntsStorage = JSON.parse( localStorage.getItem("listAccaunts") );
+  const login = loginInput.value.trim();
+  const password = passwordInput.value.trim();
+  const accauntsStorage = JSON.parse( localStorage.getItem("listAccaunts") );
 
-  let foundUser = accauntsStorage.find( (el) => el.login == login);
+  const foundUser = accauntsStorage.find( (el) => el.login == login);
 
   if (login == "") {
     loginError.innerText = "Введите логин";
@@ -55,7 +55,7 @@ validationForm.addEventListener( "submit", (e) => {
     e.preventDefault();
   } 
   else {
-    let activeUser = {
+    const activeUser = {
       id: foundUser.id,
       login: foundUser.login,
       password: foundUser.password,
@@ -69,7 +69,7 @@ validationForm.addEventListener( "submit", (e) => {
       publications: foundUser.publications
     };
 
-    localStorage.setItem( `activeUser`, JSON.stringify(activeUser) );
+    localStorage.setItem( 'activeUser', JSON.stringify(activeUser) );
   }
 });
 

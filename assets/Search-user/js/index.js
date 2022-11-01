@@ -14,40 +14,41 @@ searchInput.addEventListener( "focus", () => {
 const searchList = document.querySelector(".search-list");
 
 listUsers.map( (index) => {
-  let userItem = `<li class="search-list-item">${index.login}</li>`;
+  const userItem = `<li class="search-list-item">${index.login}</li>`;
 
   searchList.insertAdjacentHTML("afterbegin", userItem);
 });
 
 const listUsersItems = document.querySelectorAll(".search-list-item");
+const selectorItemShow = "search-list-item-show";
 
 searchInput.oninput = () => {
-  let val = searchInput.value.trim().toLowerCase();
+  const val = searchInput.value.trim().toLowerCase();
 
   if (val != "") {
-    listUsersItems.forEach( (elem) => {
-      if (elem.innerText.toLowerCase().search(val) != -1) {
-        elem.classList.add("search-list-item-show");
+    listUsersItems.forEach( (el) => {
+      if (el.innerText.toLowerCase().search(val) != -1) {
+        el.classList.add(selectorItemShow);
       } else {
-        elem.classList.remove("search-list-item-show");
+        el.classList.remove(selectorItemShow);
       }
     })
   } else {
-    listUsersItems.forEach( (elem) => {
-      elem.classList.remove("search-list-item-show");
+    listUsersItems.forEach( (el) => {
+      el.classList.remove(selectorItemShow);
     })
   }
 };
 
 
 document.addEventListener( "click", (e) => {
-  let click = e.composedPath();
+  const click = e.composedPath();
 
   if ( !click.includes(searchInput) && !click.includes(searchList) ) {
     btnSearch.classList.remove("main-search-btn-focus");
     searchInput.value = "";
-    listUsersItems.forEach( (elem) => {
-      elem.classList.remove("search-list-item-show");
+    listUsersItems.forEach( (el) => {
+      el.classList.remove(selectorItemShow);
     })
   }
 });

@@ -14,8 +14,8 @@ const showTime = () => {
       if(seconds < 10) seconds = `0${seconds}`;
 
       const clock = `${hours}:${minutes}:${seconds}`;
-      document.querySelector("#clock").innerHTML = clock;
-      document.querySelector("#clock-mobile").innerHTML = clock;
+      document.querySelector(".clock").innerHTML = clock;
+      document.querySelector(".clock-mobile").innerHTML = clock;
     });
   };
 };
@@ -26,7 +26,7 @@ showTime();
 import {posts} from "./assets.js";
 
 if ( JSON.parse( localStorage.getItem("posts") ) == null ) {
-  localStorage.setItem( `posts`, JSON.stringify(posts) );
+  localStorage.setItem( 'posts', JSON.stringify(posts) );
 }
 
 
@@ -35,10 +35,10 @@ const listPhoto = document.querySelector(".page-profile-content");
 const showPosts = () => {
   listPhoto.innerHTML = "";
 
-  let postsStorage = JSON.parse(localStorage.getItem("posts"));
+  const postsStorage = JSON.parse(localStorage.getItem("posts"));
 
   postsStorage.map( (index) => {
-    let newPhoto = `<div id="${index.id}" class="profile-content-wrap">
+    const newPhoto = `<div id="${index.id}" class="profile-content-wrap">
                       <img src="${index.src}" alt="Фото-публикация">
                     </div>`;
 
@@ -54,8 +54,8 @@ const url = "http://aws.random.cat/meow";
 
 async function fetchImage() {
   try {
-    let promise = await fetch(url);
-    let data = await promise.json();
+    const promise = await fetch(url);
+    const data = await promise.json();
     imgWrap.src = data.file;
   } catch (error) {
     console.log(error);
@@ -106,51 +106,52 @@ const cancelStyle = () => {
 const statisticPosts = document.querySelector(".statistic-publications");
 
 const countPublications = () => {
-  let listAccaunts = JSON.parse( localStorage.getItem("listAccaunts") );
-  let activeUser = JSON.parse( localStorage.getItem("activeUser") );
-  let listPosts = JSON.parse( localStorage.getItem("posts") ); 
+  const listAccaunts = JSON.parse( localStorage.getItem("listAccaunts") );
+  const activeUser = JSON.parse( localStorage.getItem("activeUser") );
+  const listPosts = JSON.parse( localStorage.getItem("posts") ); 
 
-  let userFound = listAccaunts.find( el => el.id == activeUser.id);
+  const userFound = listAccaunts.find( el => el.id == activeUser.id);
 
-  let countPosts = listPosts.length;
+  const countPosts = listPosts.length;
 
   userFound.publications = countPosts;
   activeUser.publications = countPosts;
   statisticPosts.innerHTML = activeUser.publications;
 
-  localStorage.setItem( `listAccaunts`, JSON.stringify(listAccaunts) );
-  localStorage.setItem( `activeUser`, JSON.stringify(activeUser) ); 
+  localStorage.setItem( 'listAccaunts', JSON.stringify(listAccaunts) );
+  localStorage.setItem( 'activeUser', JSON.stringify(activeUser) ); 
 };
 
 countPublications();
 
 
 const addPhoto = () => {
-  let listPosts = JSON.parse( localStorage.getItem("posts") ); 
+  const listPosts = JSON.parse( localStorage.getItem("posts") ); 
   let count = listPosts.length;
   count ++;
 
-  let newPost = {
+  const newPost = {
     id: count,  
     description: "", 
     src: imgWrap.src,
     like: 0,
+    myLike: 0,
     comments: []
   };
 
   listPosts.push(newPost);
-  localStorage.setItem( `posts`, JSON.stringify(listPosts) );
+  localStorage.setItem( 'posts', JSON.stringify(listPosts) );
   countPublications();
 };
 
 
 const inputTextForm = document.querySelector(".loading-control-comment");
 
-let submitText = () => {
-  let listPosts = JSON.parse( localStorage.getItem("posts") );
+const submitText = () => {
+  const listPosts = JSON.parse( localStorage.getItem("posts") );
   listPosts[listPosts.length - 1].description = inputTextForm.value.trim();
 
-  localStorage.setItem( `posts`, JSON.stringify(listPosts) );
+  localStorage.setItem( 'posts', JSON.stringify(listPosts) );
 
   inputTextForm.value = "";
 };
@@ -175,7 +176,7 @@ const output = document.querySelector("#volume");
 const inputRange = document.querySelector("#counter");
 
 inputRange.addEventListener( "input", () => {
-  let vol = parseInt(inputRange.value);
+  const vol = parseInt(inputRange.value);
 
   if (vol == 1) {
     output.innerHTML = `Через ${vol} секунду`;
@@ -199,7 +200,7 @@ btnConfirm.addEventListener( "click", () => {
 
 
 document.addEventListener( "click", (e) => {
-  let click = e.composedPath();
+  const click = e.composedPath();
 
   if (!click.includes(btnAddImgLater) && !click.includes(timing)) {
     timing.style.display = "none";
@@ -214,10 +215,10 @@ const likePhoto = document.querySelector(".post-description-like");
 const sectionComments = document.querySelector(".post-description-section");
 
 listPhoto.addEventListener( "click", (e) => {
-  let listPosts = JSON.parse( localStorage.getItem("posts") );
-  let attrId = e.target.parentElement.id;
-  let indexObj = listPosts[attrId - 1];
-  let activeUser = JSON.parse( localStorage.getItem("activeUser") );
+  const listPosts = JSON.parse( localStorage.getItem("posts") );
+  const attrId = e.target.parentElement.id;
+  const indexObj = listPosts[attrId - 1];
+  const activeUser = JSON.parse( localStorage.getItem("activeUser") );
 
   modalPost.id = indexObj.id;
   postImg.src = indexObj.src;
@@ -230,13 +231,13 @@ listPhoto.addEventListener( "click", (e) => {
     descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${indexObj.description}`;
   }
 
-  for (let key of indexObj.comments) {
-    let newComment = `<p class="post-description-comment">
-                        <b>${key.userName}</b> ${key.comment}
+  indexObj.comments.forEach( (el) => {
+    const newComment = `<p class="post-description-comment">
+                        <b>${el.userName}</b> ${el.comment}
                       </p>`;
                       
     sectionComments.insertAdjacentHTML("afterbegin", newComment);
-  }
+  });
 
   modal.style.display = "flex";
   modalPost.style.display = "block";
@@ -248,10 +249,10 @@ listPhoto.addEventListener( "click", (e) => {
 const btnLike = document.querySelector("#action-btn-heart");
 
 btnLike.addEventListener( "click", (e) => {
-  let listPosts = JSON.parse( localStorage.getItem("posts") );
-  let attrId = e.target.closest(".modal-profile-post").id;
-  let indexObj = listPosts[attrId - 1];
-  let count = 1;
+  const listPosts = JSON.parse( localStorage.getItem("posts") );
+  const attrId = e.target.closest(".modal-profile-post").id;
+  const indexObj = listPosts[attrId - 1];
+  const count = 1;
 
   if (indexObj.myLike == 0) {
     indexObj.myLike = count;
@@ -259,18 +260,18 @@ btnLike.addEventListener( "click", (e) => {
   
     likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
   
-    localStorage.setItem( `posts`, JSON.stringify(listPosts) );
+    localStorage.setItem( 'posts', JSON.stringify(listPosts) );
   } 
 } );
 
 
 const btnComment = document.querySelector("#action-btn-comment");
-const commentForm = document.querySelector("#post-description-form");
+const commentForm = document.querySelector(".post-description-form");
 
 btnComment.addEventListener( "click", () => {
   commentForm.style.display = "flex";
 
-  let height = modalPost.scrollHeight;
+  const height = modalPost.scrollHeight;
   modalPost.scrollTo({
     top: height,
     behavior: "smooth"
@@ -282,11 +283,11 @@ const textComment = document.querySelector(".post-description-textarea");
 const btnCommentConfirm = document.querySelector(".post-description-btn");
 
 btnCommentConfirm.addEventListener( "click", (e) => {
-  let listPosts = JSON.parse( localStorage.getItem("posts") );
-  let attrId = e.target.closest(".modal-profile-post").id;
-  let indexObj = listPosts[attrId - 1].comments;
-  let newTextComment = textComment.value.trim();
-  let activeUser = JSON.parse( localStorage.getItem("activeUser") );
+  const listPosts = JSON.parse( localStorage.getItem("posts") );
+  const attrId = e.target.closest(".modal-profile-post").id;
+  const indexObj = listPosts[attrId - 1].comments;
+  const newTextComment = textComment.value.trim();
+  const activeUser = JSON.parse( localStorage.getItem("activeUser") );
 
   if (newTextComment == "") {
     commentForm.style.display = "none";
@@ -294,14 +295,16 @@ btnCommentConfirm.addEventListener( "click", (e) => {
   } else {
     let count = indexObj.length;
     count ++;
-    let newObjComment = {
+
+    const newObjComment = {
     id: count,
     userName: activeUser.login,
     comment: newTextComment
     };
+    
     indexObj.push(newObjComment);
   
-    let newComment = `<p class="post-description-comment">
+    const newComment = `<p class="post-description-comment">
                       <b>${activeUser.login}</b> ${newTextComment}
                       </p>`;
   
@@ -310,13 +313,13 @@ btnCommentConfirm.addEventListener( "click", (e) => {
     commentForm.style.display = "none";
     textComment.value = "";
   
-    localStorage.setItem( `posts`, JSON.stringify(listPosts) );
+    localStorage.setItem( 'posts', JSON.stringify(listPosts) );
   }
 });
 
 
 modal.addEventListener( "click", (e) => {
-  let click = e.composedPath();
+  const click = e.composedPath();
 
   if ( !click.includes(popup) && !click.includes(modalPost) ) {
     cancelStyle();
