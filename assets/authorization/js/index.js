@@ -29,7 +29,7 @@ validationForm.addEventListener( "submit", (e) => {
   const password = passwordInput.value.trim();
   const accauntsStorage = JSON.parse( localStorage.getItem("listAccaunts") );
 
-  const foundUser = accauntsStorage.find( (el) => el.login === login);
+  const foundUser = accauntsStorage.find( ({login}) => login === login);
 
   if (!login) {
     loginError.innerText = "Введите логин";

@@ -37,9 +37,9 @@ const showPosts = () => {
 
   const postsStorage = JSON.parse(localStorage.getItem("posts"));
 
-  postsStorage.map( (index) => {
-    const newPhoto = `<div id="${index.id}" class="profile-content-wrap">
-                      <img src="${index.src}" alt="Фото-публикация">
+  postsStorage.map( ({id, src}) => {
+    const newPhoto = `<div id="${id}" class="profile-content-wrap">
+                      <img src="${src}" alt="Фото-публикация">
                     </div>`;
 
     listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
@@ -110,7 +110,7 @@ const countPublications = () => {
   const activeUser = JSON.parse( localStorage.getItem("activeUser") );
   const listPosts = JSON.parse( localStorage.getItem("posts") ); 
 
-  const userFound = listAccaunts.find( el => el.id === activeUser.id);
+  const userFound = listAccaunts.find( ({id}) => id === activeUser.id);
 
   const countPosts = listPosts.length;
 
@@ -224,7 +224,7 @@ listPhoto.addEventListener( "click", (e) => {
 
   if (!indexObj) {
     const postSrc = e.target.src;
-    const foundPost = listPosts.find( el => el.src === postSrc);
+    const foundPost = listPosts.find( ({src}) => src === postSrc);
 
     modalPost.id = foundPost.id;
     postImg.src = foundPost.src;
@@ -237,9 +237,9 @@ listPhoto.addEventListener( "click", (e) => {
       descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${foundPost.description}`;
     }
 
-    foundPost.comments.forEach( (el) => {
+    foundPost.comments.forEach( ({userName, comment}) => {
       const newComment = `<p class="post-description-comment">
-                          <b>${el.userName}</b> ${el.comment}</p>`;
+                          <b>${userName}</b> ${comment}</p>`;
                         
       sectionComments.insertAdjacentHTML("afterbegin", newComment);
     });
@@ -256,9 +256,9 @@ listPhoto.addEventListener( "click", (e) => {
       descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${indexObj.description}`;
     }
 
-    indexObj.comments.forEach( (el) => {
+    indexObj.comments.forEach( ({userName, comment}) => {
       const newComment = `<p class="post-description-comment">
-                          <b>${el.userName}</b> ${el.comment}</p>`;
+                          <b>${userName}</b> ${comment}</p>`;
                         
       sectionComments.insertAdjacentHTML("afterbegin", newComment);
     });

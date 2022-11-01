@@ -13,8 +13,8 @@ searchInput.addEventListener( "focus", () => {
 
 const searchList = document.querySelector(".search-list");
 
-listUsers.map( (index) => {
-  const userItem = `<li class="search-list-item">${index.login}</li>`;
+listUsers.map( ({login}) => {
+  const userItem = `<li class="search-list-item">${login}</li>`;
 
   searchList.insertAdjacentHTML("afterbegin", userItem);
 });
