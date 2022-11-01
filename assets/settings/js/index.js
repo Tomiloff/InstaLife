@@ -57,33 +57,20 @@ const settingForm = document.querySelector(".profile-settings");
 settingForm.addEventListener( "submit", () => {
   const userFound = listAccaunts.find( ({id}) => id === activeUser.id);
 
-  const newNameSurname = nameSurnameInput.value.trim();
-  userFound.nameSurname = newNameSurname;
-  activeUser.nameSurname = newNameSurname;
-
-  const newLogin = loginInput.value.trim();
-  userFound.login = newLogin;
-  activeUser.login = newLogin;
-
-  const newUrl = urlInput.value.trim();
-  userFound.url = newUrl;
-  activeUser.url = newUrl;
-
-  const newDescription = aboutInput.value.trim();
-  userFound.description = newDescription;
-  activeUser.description = newDescription;
-
-  const newEmail = emailInput.value.trim();
-  userFound.email = newEmail;
-  activeUser.email = newEmail;
-
-  const newPhoneNumber = phoneNumberInput.value.trim();
-  userFound.phoneNumber = newPhoneNumber;
-  activeUser.phoneNumber = newPhoneNumber;
-
-  const newGender = genderInput.value.trim();
-  userFound.gender = newGender;
-  activeUser.gender = newGender;
+  const dataCollection = {
+    nameSurname: nameSurnameInput.value.trim(),
+          login: loginInput.value.trim(),
+            url: urlInput.value.trim(),
+    description: aboutInput.value.trim(),
+          email: emailInput.value.trim(),
+    phoneNumber: phoneNumberInput.value.trim(),
+         gender: genderInput.value.trim()
+  };
+  
+  Object.entries(dataCollection).forEach( (el) => {
+    userFound[el[0]] = el[1];
+    activeUser[el[0]] = el[1];
+  });
 
   localStorage.setItem( 'listAccaunts', JSON.stringify(listAccaunts) );
   localStorage.setItem( 'activeUser', JSON.stringify(activeUser) );
