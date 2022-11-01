@@ -125,7 +125,7 @@ const countPublications = () => {
 countPublications();
 
 
-const addPhoto = () => {
+const addPost = () => {
   const listPosts = JSON.parse( localStorage.getItem("posts") ); 
   let count = listPosts.length;
   count ++;
@@ -149,10 +149,15 @@ const inputTextForm = document.querySelector(".loading-control-comment");
 
 const submitText = () => {
   const listPosts = JSON.parse( localStorage.getItem("posts") );
-  listPosts[listPosts.length - 1].description = inputTextForm.value.trim();
-
+  let indexObj = listPosts.length - 1;
+  
+  if (indexObj === -1) {
+    listPosts[indexObj++].description = inputTextForm.value.trim();
+  } else {
+    listPosts[indexObj].description = inputTextForm.value.trim();
+  }
+  
   localStorage.setItem( 'posts', JSON.stringify(listPosts) );
-
   inputTextForm.value = "";
 };
 
@@ -160,7 +165,7 @@ const submitText = () => {
 const btnAddImgNow = document.querySelector("#addNow");
 
 btnAddImgNow.addEventListener( "click", () => {
-  addPhoto(),cancelStyle(),showPosts(),submitText();
+  addPost(),cancelStyle(),showPosts(),submitText();
 } );
 
 
@@ -187,7 +192,7 @@ const btnConfirm = document.querySelector(".control-form-btn");
 
 btnConfirm.addEventListener( "click", () => {
   setTimeout( () => {!
-    addPhoto(),submitText(),showPosts();
+    addPost(),submitText(),showPosts();
   }, inputRange.value * 1000);
   
   timing.style.display = "none";
@@ -217,24 +222,47 @@ listPhoto.addEventListener( "click", (e) => {
   const indexObj = listPosts[attrId - 1];
   const activeUser = JSON.parse( localStorage.getItem("activeUser") );
 
-  modalPost.id = indexObj.id;
-  postImg.src = indexObj.src;
-  likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+  if (!indexObj) {
+    const postSrc = e.target.src;
+    const foundPost = listPosts.find( el => el.src === postSrc);
 
-  if (indexObj.description === "") {
-    descriptionPhoto.classList.add("post-description-story-hide");
-  } else {
-    descriptionPhoto.classList.remove("post-description-story-hide");
-    descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${indexObj.description}`;
+    modalPost.id = foundPost.id;
+    postImg.src = foundPost.src;
+    likePhoto.innerHTML = `Нравится: ${foundPost.like}`;
+
+    if (foundPost.description === "") {
+      descriptionPhoto.classList.add("post-description-story-hide");
+    } else {
+      descriptionPhoto.classList.remove("post-description-story-hide");
+      descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${foundPost.description}`;
+    }
+
+    foundPost.comments.forEach( (el) => {
+      const newComment = `<p class="post-description-comment">
+                          <b>${el.userName}</b> ${el.comment}</p>`;
+                        
+      sectionComments.insertAdjacentHTML("afterbegin", newComment);
+    });
+  } 
+  else {
+    modalPost.id = indexObj.id;
+    postImg.src = indexObj.src;
+    likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+
+    if (indexObj.description === "") {
+      descriptionPhoto.classList.add("post-description-story-hide");
+    } else {
+      descriptionPhoto.classList.remove("post-description-story-hide");
+      descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${indexObj.description}`;
+    }
+
+    indexObj.comments.forEach( (el) => {
+      const newComment = `<p class="post-description-comment">
+                          <b>${el.userName}</b> ${el.comment}</p>`;
+                        
+      sectionComments.insertAdjacentHTML("afterbegin", newComment);
+    });
   }
-
-  indexObj.comments.forEach( (el) => {
-    const newComment = `<p class="post-description-comment">
-                        <b>${el.userName}</b> ${el.comment}
-                      </p>`;
-                      
-    sectionComments.insertAdjacentHTML("afterbegin", newComment);
-  });
 
   modal.style.display = "flex";
   modalPost.style.display = "block";
