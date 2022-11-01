@@ -2,7 +2,7 @@
 
 import {listAccaunts} from "./assets.js";
 
-if ( JSON.parse( localStorage.getItem("listAccaunts") ) == null ) {
+if ( !JSON.parse( localStorage.getItem("listAccaunts") ) ) {
   localStorage.setItem( 'listAccaunts', JSON.stringify(listAccaunts) );
 }
 
@@ -13,45 +13,46 @@ const validationForm = document.querySelector(".authorization-form");
 const loginError = document.querySelector(".loginError");
 const passwordError = document.querySelector(".passwordError");
 
+const handlingLogin = () => {
+  loginError.classList.add("loginErrorShow");
+  loginInput.classList.add("inputInvalid");
+};
+
+const handlingPassword = () => {
+  loginInput.classList.add("inputValid");
+  passwordError.classList.add("passwordErrorShow");
+  passwordInput.classList.add("inputInvalid");
+};
+
 validationForm.addEventListener( "submit", (e) => {
   const login = loginInput.value.trim();
   const password = passwordInput.value.trim();
   const accauntsStorage = JSON.parse( localStorage.getItem("listAccaunts") );
 
-  const foundUser = accauntsStorage.find( (el) => el.login == login);
+  const foundUser = accauntsStorage.find( (el) => el.login === login);
 
-  if (login == "") {
+  if (!login) {
     loginError.innerText = "Введите логин";
 
-    loginError.classList.add("loginErrorShow");
-    loginInput.classList.add("inputInvalid");
-
+    handlingLogin();
     e.preventDefault();
   } 
-  else if (foundUser == undefined) {
+  else if (!foundUser) {
     loginError.innerText = "Неверный логин";
 
-    loginError.classList.add("loginErrorShow");
-    loginInput.classList.add("inputInvalid");
-
+    handlingLogin();
     e.preventDefault();
   } 
-  else if (password == "") {
+  else if (!password) {
     passwordError.innerText = "Введите пароль";
 
-    passwordError.classList.add("passwordErrorShow");
-    passwordInput.classList.add("inputInvalid");
-    loginInput.classList.add("inputValid");
-
+    handlingPassword();
     e.preventDefault();
   } 
-  else if (foundUser.password != password) {
+  else if (foundUser.password !== password) {
     passwordError.innerText = "Неверный пароль";
 
-    loginInput.classList.add("inputValid");
-    passwordError.classList.add("passwordErrorShow");
-    passwordInput.classList.add("inputInvalid");
-
+    handlingPassword();
     e.preventDefault();
   } 
   else {

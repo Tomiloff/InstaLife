@@ -1,6 +1,6 @@
 "use strict";
 
-if ( JSON.parse( localStorage.getItem("activeUser") == null ) ) {
+if ( !JSON.parse( localStorage.getItem("activeUser") ) ) {
   window.location.href = 'Authorization.html';
 }
 

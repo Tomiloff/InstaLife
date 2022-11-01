@@ -25,7 +25,7 @@ showTime();
 
 import {posts} from "./assets.js";
 
-if ( JSON.parse( localStorage.getItem("posts") ) == null ) {
+if ( !JSON.parse( localStorage.getItem("posts") ) ) {
   localStorage.setItem( 'posts', JSON.stringify(posts) );
 }
 
@@ -110,7 +110,7 @@ const countPublications = () => {
   const activeUser = JSON.parse( localStorage.getItem("activeUser") );
   const listPosts = JSON.parse( localStorage.getItem("posts") ); 
 
-  const userFound = listAccaunts.find( el => el.id == activeUser.id);
+  const userFound = listAccaunts.find( el => el.id === activeUser.id);
 
   const countPosts = listPosts.length;
 
@@ -178,18 +178,15 @@ const inputRange = document.querySelector("#counter");
 inputRange.addEventListener( "input", () => {
   const vol = parseInt(inputRange.value);
 
-  if (vol == 1) {
-    output.innerHTML = `Через ${vol} секунду`;
-      } else {
-        output.innerHTML = `Через ${vol} секунд(ы)`;
-      }
+  output.innerHTML = `Через ${vol === 1 ? 
+    `${vol} секунду` : `${vol} секунд(ы)`}`;
 } );
 
 
 const btnConfirm = document.querySelector(".control-form-btn");
 
 btnConfirm.addEventListener( "click", () => {
-  setTimeout( () => {
+  setTimeout( () => {!
     addPhoto(),submitText(),showPosts();
   }, inputRange.value * 1000);
   
@@ -224,7 +221,7 @@ listPhoto.addEventListener( "click", (e) => {
   postImg.src = indexObj.src;
   likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
 
-  if (indexObj.description == "") {
+  if (indexObj.description === "") {
     descriptionPhoto.classList.add("post-description-story-hide");
   } else {
     descriptionPhoto.classList.remove("post-description-story-hide");
@@ -254,7 +251,7 @@ btnLike.addEventListener( "click", (e) => {
   const indexObj = listPosts[attrId - 1];
   const count = 1;
 
-  if (indexObj.myLike == 0) {
+  if (indexObj.myLike === 0) {
     indexObj.myLike = count;
     indexObj.like = indexObj.like + count;
   
@@ -289,7 +286,7 @@ btnCommentConfirm.addEventListener( "click", (e) => {
   const newTextComment = textComment.value.trim();
   const activeUser = JSON.parse( localStorage.getItem("activeUser") );
 
-  if (newTextComment == "") {
+  if (newTextComment === "") {
     commentForm.style.display = "none";
     textComment.value = "";
   } else {

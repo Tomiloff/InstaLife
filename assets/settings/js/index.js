@@ -14,7 +14,7 @@ const btnChangeAvatar = document.querySelector(".section-control-btn");
 const uploaderImg = document.querySelector(".section-control-input");
 
 function download(input) {
-  const userFound = listAccaunts.find( el => el.id == activeUser.id);
+  const userFound = listAccaunts.find( el => el.id === activeUser.id);
 
   const file = input.files[0];
   const reader = new FileReader();
@@ -55,7 +55,7 @@ genderInput.value = activeUser.gender;
 const settingForm = document.querySelector(".profile-settings");
 
 settingForm.addEventListener( "submit", () => {
-  const userFound = listAccaunts.find( el => el.id == activeUser.id);
+  const userFound = listAccaunts.find( el => el.id === activeUser.id);
 
   const newNameSurname = nameSurnameInput.value.trim();
   userFound.nameSurname = newNameSurname;
@@ -96,7 +96,7 @@ passwordInput.value = activeUser.password;
 const passwordForm = document.querySelector(".profile-password");
 
 passwordForm.addEventListener( "submit", () => {
-  const userFound = listAccaunts.find( el => el.password == activeUser.password);
+  const userFound = listAccaunts.find( el => el.password === activeUser.password);
 
   const newPassword = passwordInput.value;
 

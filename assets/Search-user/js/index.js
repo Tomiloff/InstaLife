@@ -25,9 +25,9 @@ const selectorItemShow = "search-list-item-show";
 searchInput.oninput = () => {
   const val = searchInput.value.trim().toLowerCase();
 
-  if (val != "") {
+  if (val !== "") {
     listUsersItems.forEach( (el) => {
-      if (el.innerText.toLowerCase().search(val) != -1) {
+      if (el.innerText.toLowerCase().search(val) !== -1) {
         el.classList.add(selectorItemShow);
       } else {
         el.classList.remove(selectorItemShow);
