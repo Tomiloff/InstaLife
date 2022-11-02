@@ -13,14 +13,14 @@ const validationForm = document.querySelector(".authorization-form");
 const loginError = document.querySelector(".loginError");
 const passwordError = document.querySelector(".passwordError");
 
-const handlingLogin = () => {
+const handlingLogin = (e) => {
   loginError.classList.add("loginErrorShow");
   loginInput.classList.add("inputInvalid");
 
   e.preventDefault();
 };
 
-const handlingPassword = () => {
+const handlingPassword = (e) => {
   loginInput.classList.add("inputValid");
   passwordError.classList.add("passwordErrorShow");
   passwordInput.classList.add("inputInvalid");
@@ -38,22 +38,22 @@ validationForm.addEventListener( "submit", (e) => {
   if (!loginUser) {
     loginError.innerText = "Введите логин";
 
-    handlingLogin();
+    handlingLogin(e);
   } 
   else if (!foundUser) {
     loginError.innerText = "Неверный логин";
 
-    handlingLogin();
+    handlingLogin(e);
   } 
   else if (!password) {
     passwordError.innerText = "Введите пароль";
 
-    handlingPassword();
+    handlingPassword(e);
   } 
   else if (foundUser.password !== password) {
     passwordError.innerText = "Неверный пароль";
 
-    handlingPassword();
+    handlingPassword(e);
   } 
   else {
     const activeUser = {
