@@ -54,6 +54,37 @@ button {
   border-radius: 3px;
 }
 
+.mask {
+  height: 100%;
+  position: fixed;
+  background-color: var(--white);
+  top: 0;
+  z-index: 5000;
+  transition: 0.6s;
+  align-items: center;
+}
+
+.loader {
+  width: 85px;
+  height: 85px;
+  border: 7px solid #007aff;
+  border-radius: 50%;
+  border-left-color: #62adff;
+  border-bottom-color: #94c4f8;
+  border-right-color: #ffffff;
+  animation: loaderTop 0.8s linear infinite;
+}
+
+@keyframes loaderTop {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hide-loader-top {
+  opacity: 0;
+}
+
 .flex {
   width: 100%;
   display: flex;

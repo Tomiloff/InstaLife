@@ -14,8 +14,8 @@ const showTime = () => {
       if(seconds < 10) seconds = `0${seconds}`;
 
       const clock = `${hours}:${minutes}:${seconds}`;
-      document.querySelector("#clock").innerHTML = clock;
-      document.querySelector("#clock-mobile").innerHTML = clock;
+      document.querySelector(".clock").innerHTML = clock;
+      document.querySelector(".clock-mobile").innerHTML = clock;
     });
   };
 };
@@ -23,7 +23,11 @@ const showTime = () => {
 showTime();
 
 
-import {posts} from "./funds.js";
+import {posts} from "./assets.js";
+
+if ( !JSON.parse( localStorage.getItem("posts") ) ) {
+  localStorage.setItem( 'posts', JSON.stringify(posts) );
+}
 
 
 const listPhoto = document.querySelector(".page-profile-content");
@@ -31,10 +35,12 @@ const listPhoto = document.querySelector(".page-profile-content");
 const showPosts = () => {
   listPhoto.innerHTML = "";
 
-  posts.map( (index) => {
-    let newPhoto = `<div id="${index.id}" class="profile-content-wrap">
-                    <img src="${index.src}" 
-                    alt="Фото-публикация"></div>`;
+  const postsStorage = JSON.parse(localStorage.getItem("posts"));
+
+  postsStorage.map( ({id, src}) => {
+    const newPhoto = `<div id="${id}" class="profile-content-wrap">
+                      <img src="${src}" alt="Фото-публикация">
+                    </div>`;
 
     listPhoto.insertAdjacentHTML("afterbegin", newPhoto);
   } );
@@ -48,8 +54,8 @@ const url = "http://aws.random.cat/meow";
 
 async function fetchImage() {
   try {
-    let promise = await fetch(url);
-    let data = await promise.json();
+    const promise = await fetch(url);
+    const data = await promise.json();
     imgWrap.src = data.file;
   } catch (error) {
     console.log(error);
@@ -97,27 +103,61 @@ const cancelStyle = () => {
 };
 
 
-const addPhoto = () => {
-  let count = posts.length;
+const statisticPosts = document.querySelector(".statistic-publications");
+
+const countPublications = () => {
+  const listAccaunts = JSON.parse( localStorage.getItem("listAccaunts") );
+  const activeUser = JSON.parse( localStorage.getItem("activeUser") );
+  const listPosts = JSON.parse( localStorage.getItem("posts") ); 
+
+  const userFound = listAccaunts.find( ({id}) => id === activeUser.id);
+
+  const countPosts = listPosts.length;
+
+  userFound.publications = countPosts;
+  activeUser.publications = countPosts;
+  statisticPosts.innerHTML = activeUser.publications;
+
+  localStorage.setItem( 'listAccaunts', JSON.stringify(listAccaunts) );
+  localStorage.setItem( 'activeUser', JSON.stringify(activeUser) ); 
+};
+
+countPublications();
+
+
+const addPost = () => {
+  const listPosts = JSON.parse( localStorage.getItem("posts") ); 
+  let count = listPosts.length;
   count ++;
 
-  let newPost = {
-    id: count, 
-    login: "name", 
+  const newPost = {
+    id: count,  
     description: "", 
     src: imgWrap.src,
-    like: 0
+    like: 0,
+    myLike: 0,
+    comments: []
   };
 
-  posts.push(newPost);
+  listPosts.push(newPost);
+  localStorage.setItem( 'posts', JSON.stringify(listPosts) );
+  countPublications();
 };
 
 
 const inputTextForm = document.querySelector(".loading-control-comment");
 
-let submitText = () => {
-  posts[posts.length - 1].description = inputTextForm.value;
-
+const submitText = () => {
+  const listPosts = JSON.parse( localStorage.getItem("posts") );
+  let indexObj = listPosts.length - 1;
+  
+  if (indexObj === -1) {
+    listPosts[indexObj++].description = inputTextForm.value.trim();
+  } else {
+    listPosts[indexObj].description = inputTextForm.value.trim();
+  }
+  
+  localStorage.setItem( 'posts', JSON.stringify(listPosts) );
   inputTextForm.value = "";
 };
 
@@ -125,7 +165,7 @@ let submitText = () => {
 const btnAddImgNow = document.querySelector("#addNow");
 
 btnAddImgNow.addEventListener( "click", () => {
-  addPhoto(),cancelStyle(),showPosts(),submitText();
+  addPost(),cancelStyle(),showPosts(),submitText();
 } );
 
 
@@ -138,22 +178,21 @@ btnAddImgLater.addEventListener( "click", () => {
 
 
 const output = document.querySelector("#volume");
+const inputRange = document.querySelector("#counter");
 
-const outputUpdate = (vol) => {
-  if (vol == 1) {
-    output.value = `Через ${vol} секунду`;
-  } else {
-    output.value = `Через ${vol} секунд(ы)`;
-  }
-};
+inputRange.addEventListener( "input", () => {
+  const vol = parseInt(inputRange.value);
+
+  output.innerHTML = `Через ${vol === 1 ? 
+    `${vol} секунду` : `${vol} секунд(ы)`}`;
+} );
 
 
 const btnConfirm = document.querySelector(".control-form-btn");
-const inputRange = document.querySelector("#counter");
 
 btnConfirm.addEventListener( "click", () => {
-  setTimeout( () => {
-    addPhoto(),submitText(),showPosts();
+  setTimeout( () => {!
+    addPost(),submitText(),showPosts();
   }, inputRange.value * 1000);
   
   timing.style.display = "none";
@@ -163,7 +202,7 @@ btnConfirm.addEventListener( "click", () => {
 
 
 document.addEventListener( "click", (e) => {
-  let click = e.composedPath();
+  const click = e.composedPath();
 
   if (!click.includes(btnAddImgLater) && !click.includes(timing)) {
     timing.style.display = "none";
@@ -173,42 +212,173 @@ document.addEventListener( "click", (e) => {
 
 const modalPost = document.querySelector(".modal-profile-post");
 const postImg = document.querySelector(".post-wrap-img");
-const commentPhoto = document.querySelector(".post-description-story");
+const descriptionPhoto = document.querySelector(".post-description-story");
 const likePhoto = document.querySelector(".post-description-like");
+const sectionComments = document.querySelector(".post-description-section");
 
 listPhoto.addEventListener( "click", (e) => {
-  let attrId = e.target.parentElement.id;
-  let indexObj = posts[attrId - 1];
+  const listPosts = JSON.parse( localStorage.getItem("posts") );
+  const attrId = e.target.parentElement.id;
+  const indexObj = listPosts[attrId - 1];
+  const activeUser = JSON.parse( localStorage.getItem("activeUser") );
 
-  modalPost.id = indexObj.id;
-  postImg.src = indexObj.src;
-  commentPhoto.innerHTML = `<b>${indexObj.login}</b> ${indexObj.description}`;
-  likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+  if (!indexObj) {
+    const postSrc = e.target.src;
+    const foundPost = listPosts.find( ({src}) => src === postSrc);
 
+    modalPost.id = foundPost.id;
+    postImg.src = foundPost.src;
+    likePhoto.innerHTML = `Нравится: ${foundPost.like}`;
+
+    if (foundPost.description === "") {
+      descriptionPhoto.classList.add("post-description-story-hide");
+    } else {
+      descriptionPhoto.classList.remove("post-description-story-hide");
+      descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${foundPost.description}`;
+    }
+
+    foundPost.comments.forEach( ({userName, comment}) => {
+      const newComment = `<p class="post-description-comment">
+                          <b>${userName}</b> ${comment}</p>`;
+                        
+      sectionComments.insertAdjacentHTML("afterbegin", newComment);
+    });
+  } 
+  else {
+    modalPost.id = indexObj.id;
+    postImg.src = indexObj.src;
+    likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+
+    if (indexObj.description === "") {
+      descriptionPhoto.classList.add("post-description-story-hide");
+    } else {
+      descriptionPhoto.classList.remove("post-description-story-hide");
+      descriptionPhoto.innerHTML = `<b>${activeUser.login}</b> ${indexObj.description}`;
+    }
+
+    indexObj.comments.forEach( ({userName, comment}) => {
+      const newComment = `<p class="post-description-comment">
+                          <b>${userName}</b> ${comment}</p>`;
+                        
+      sectionComments.insertAdjacentHTML("afterbegin", newComment);
+    });
+  }
 
   modal.style.display = "flex";
-  modalPost.style.display = "flex";
+  modalPost.style.display = "block";
   html.style.overflow = "hidden";
   body.style.overflow = "hidden";
-});
-
-
-modal.addEventListener( "click", (e) => {
-  let click = e.composedPath();
-
-  if ( !click.includes(popup) && !click.includes(modalPost) ) {
-    cancelStyle();
-  }
 });
 
 
 const btnLike = document.querySelector("#action-btn-heart");
 
 btnLike.addEventListener( "click", (e) => {
-  let attrId = e.target.closest(".modal-profile-post").id;
-  let indexObj = posts[attrId - 1];
-  let count = 1;
+  const listPosts = JSON.parse( localStorage.getItem("posts") );
+  const attrId = e.target.closest(".modal-profile-post").id;
+  const indexObj = listPosts[attrId - 1];
+  const count = 1;
 
-  indexObj.like = indexObj.like + count;
-  likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+  if (indexObj.myLike === 0) {
+    indexObj.myLike = count;
+    indexObj.like = indexObj.like + count;
+  
+    likePhoto.innerHTML = `Нравится: ${indexObj.like}`;
+  
+    localStorage.setItem( 'posts', JSON.stringify(listPosts) );
+  } 
 } );
+
+
+const btnComment = document.querySelector("#action-btn-comment");
+const commentForm = document.querySelector(".post-description-form");
+
+btnComment.addEventListener( "click", () => {
+  commentForm.style.display = "flex";
+
+  const height = modalPost.scrollHeight;
+  modalPost.scrollTo({
+    top: height,
+    behavior: "smooth"
+});
+} );
+
+
+const textComment = document.querySelector(".post-description-textarea");
+const btnCommentConfirm = document.querySelector(".post-description-btn");
+
+btnCommentConfirm.addEventListener( "click", (e) => {
+  const listPosts = JSON.parse( localStorage.getItem("posts") );
+  const attrId = e.target.closest(".modal-profile-post").id;
+  const indexObj = listPosts[attrId - 1].comments;
+  const newTextComment = textComment.value.trim();
+  const activeUser = JSON.parse( localStorage.getItem("activeUser") );
+
+  if (newTextComment === "") {
+    commentForm.style.display = "none";
+    textComment.value = "";
+  } else {
+    let count = indexObj.length;
+    count ++;
+
+    const newObjComment = {
+    id: count,
+    userName: activeUser.login,
+    comment: newTextComment
+    };
+    
+    indexObj.push(newObjComment);
+  
+    const newComment = `<p class="post-description-comment">
+                      <b>${activeUser.login}</b> ${newTextComment}
+                      </p>`;
+  
+    sectionComments.insertAdjacentHTML("afterbegin", newComment);
+  
+    commentForm.style.display = "none";
+    textComment.value = "";
+  
+    localStorage.setItem( 'posts', JSON.stringify(listPosts) );
+  }
+});
+
+
+modal.addEventListener( "click", (e) => {
+  const click = e.composedPath();
+
+  if ( !click.includes(popup) && !click.includes(modalPost) ) {
+    cancelStyle();
+    sectionComments.innerHTML = "";
+    commentForm.style.display = "none";
+    textComment.value = "";
+  }
+});
+
+
+const activeUser = JSON.parse( localStorage.getItem("activeUser") );
+const userName = document.querySelector(".description-name-title");
+
+userName.innerHTML = activeUser.login;
+statisticPosts.innerHTML = activeUser.publications;
+
+
+const nameSurname = document.querySelectorAll(".description-aside-title");
+nameSurname.forEach( el => {
+  el.innerHTML = activeUser.nameSurname;
+});
+
+
+const urlUser = document.querySelectorAll(".description-aside-link");
+urlUser.forEach( el => {
+  el.innerHTML = activeUser.url;
+});
+
+
+const aboutUser = document.querySelectorAll(".aside-title-about");
+aboutUser.forEach( el => {
+  el.innerHTML = activeUser.description;
+});
+
+
+const userAvatar = document.querySelector(".info-avatar-img");
+userAvatar.src = activeUser.avatar;

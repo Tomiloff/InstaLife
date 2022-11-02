@@ -7,21 +7,24 @@
   padding: 20px 0;
 }
 
-.profile-settings {
+.profile-settings,
+.profile-password {
+  border: 1px solid var(--grey);
   max-width: 600px;
   margin: 0 auto;
-  border: 1px solid var(--grey);
   padding-top: 40px;
 }
 
-.profile-settings-section {
+.profile-settings-section,
+.profile-password-section {
   justify-content: flex-start;
   align-items: center;
   margin-bottom: 5px;
 }
 
 .settings-avatar-wrap,
-.settings-section-item {
+.settings-section-item,
+.password-section-item {
   justify-content: flex-end;
   align-items: center;
   font-weight: bold;
@@ -40,6 +43,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .section-control-title {
@@ -49,23 +53,35 @@
   padding-bottom: 5px;
 }
 
-.settings-section-control button {
+.section-control-input {
+  opacity: 0;
+  top: 43px;
+  width: 0%;
+  left: -3%;
+  position: absolute;
+  z-index: -10;
+}
+
+.section-control-btn {
   margin-bottom: auto;
   color: var(--blue);
   font-weight: bold;
   text-align: left;
+  cursor: pointer;
 }
 
 .settings-section-input,
+.password-section-input,
 .settings-section-textarea {
   border: 1px solid var(--grey);
   width: 100%;
   border-radius: 3px;
   padding: 5px 5px;
-  font-weight: bold;
+  font-size: 16px;
 }
 
-.settings-section-bar {
+.settings-section-bar,
+.password-section-bar {
   max-width: 300px;
   width: 100%;
   padding-top: 15px;
@@ -76,12 +92,16 @@
 }
 
 .settings-section-input:focus,
+.password-section-input:focus,
 .settings-section-textarea:focus {
   border-color: var(--blue);
+  transition: 0.3s;
 }
 
-.settings-section-input:required:valid {
+.settings-section-input:required:valid,
+.password-section-input:required:valid {
   border-color: #55cf3f;
+  transition: 0.3s;
 }
 
 .form-error {
@@ -93,9 +113,12 @@
 
 input:invalid:not(:placeholder-shown) {
   border-color: var(--red);
+  transition: 0.3s;
 }
 
 .settings-section-input:invalid:not(:placeholder-shown) + 
+.form-error,
+.password-section-input:invalid:not(:placeholder-shown) + 
 .form-error  {
   opacity: 1;
 }
@@ -108,33 +131,48 @@ input:invalid:not(:placeholder-shown) {
   margin: 20px 0;
 }
 
+.profile-password {
+  border-top: none;
+}
+
 
 /* Media queries */
 
 /* ========max-width: 550px ======== */
 @media only screen and (max-width: 550px) { 
 
-  .profile-settings,
   .settings-avatar {
     border: none;
     padding-top: 0;
+  }
+
+  .profile-settings {
+    border-left: none;
+    border-right: none;
+  }
+
+  .profile-password {
+    border: none;
   }
 
   .settings-avatar-wrap {
     max-width: 120px;
   }
 
-  .profile-settings-section {
+  .profile-settings-section,
+  .profile-password-section {
     margin-bottom: 15px;
   }
 
-  .settings-section-item {
+  .settings-section-item,
+  .password-section-item {
     justify-content: flex-start;
     max-width: 120px;
     text-align: left;
   }
 
-  .settings-section-bar {
+  .settings-section-bar,
+  .password-section-bar {
     max-width: none;
   }
 
@@ -154,17 +192,21 @@ input:invalid:not(:placeholder-shown) {
   }
 
   .profile-settings-section,
-  .settings-section-item {
+  .profile-password-section,
+  .settings-section-item,
+  .password-section-item {
     display: block;
   }
 
-  .settings-section-item {
+  .settings-section-item,
+  .password-section-item {
     text-align: left;
     width: auto;
     margin-bottom: 5px;
   }
 
-  .settings-section-bar {
+  .settings-section-bar,
+  .password-section-bar {
     padding-top: 0;
   }
 

@@ -14,6 +14,9 @@
   </head>
 
   <body>
+    <div class="mask flex">
+      <div class="loader"></div>
+    </div>
     <header class="header flex">
       <div class="header-bar flex">
         <form action="Profile.html">
@@ -22,37 +25,40 @@
           </button>
         </form>
         <div class="header-bar-menu flex">
-          <button>
-            <img src="../assets/all-images/icons/house.svg" alt="Иконка-дом">
-          </button>
-          <form action="Search-user.html">
+          <form action="Profile.html">
             <button>
-              <img src="../assets/all-images/icons/search.svg" alt="Иконка-поиск">
+              <img src="" alt="Аватар пользователя" class="bar-menu-avatar">
             </button>
-          </form>
+          </form> 
+          <button>
+            <img src="../assets/all-images/icons/search.svg" alt="Иконка-поиск">
+          </button>
           <button>
             <img src="../assets/all-images/icons/plus.svg" alt="Иконка-плюс">
           </button>
-          <button>
+          <!-- В разработке -->
+          <!-- <button>
             <img src="../assets/all-images/icons/message.svg" alt="Иконка-сообщение">
-          </button>
-          <form action="Profile.html">
+          </button> -->
+          <form action="Authorization.html">
             <button>
-              <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="bar-menu-avatar">
+              <img id="btnTopExit" src="../assets/all-images/icons/house.svg" alt="Иконка-выход">
             </button>
-          </form>  
+          </form>
         </div>
       </div>
     </header>
     <div class="aside-bar-menu">
-      <button>
-        <img src="../assets/all-images/icons/settings.svg" alt="Иконка-настройки">
-      </button>
+      <form action="Settings.html">
+        <button class="bar-menu-settings">
+          <img src="../assets/all-images/icons/settings.svg" alt="Иконка-настройки">
+        </button>
+      </form>
       <button class="bar-menu-name">
         <h2 class="menu-name-title">name</h2>
         <img src="../assets/all-images/icons/arrow.svg" alt="Иконка-стрелка">          
       </button>
-      <button>
+      <button class="bar-menu-heart">
         <img src="../assets/all-images/icons/heart.svg" alt="Иконка-сердце">
       </button>
     </div>
@@ -60,10 +66,12 @@
       <div class="main-search flex">
         <form action="">
           <input type="text" placeholder="login" class="main-search-input">
-          <button type="submit" class="main-search-btn">
-            <img src="../assets/all-images/icons/search-input.svg" alt="Иконка-поиск">           
+          <button type="button" class="main-search-btn">
+            <img src="../assets/Search-user/images/search-input.svg" alt="Иконка-поиск">           
           </button>
         </form>
+        <ul class="search-list">
+        </ul>
       </div>
       <div class="search-content-top">
         <div class="content-top-collage">
@@ -109,8 +117,8 @@
       </div>
     </main>
     <!-- Global scripts -->
-    <script src="../assets/index/js/index.js"></script>
+    <script src="../assets/all-scripts/index.js"></script>
     <!-- Search-user scripts -->
-    <script src="../assets/Search-user/index.js"></script>
+    <script type="module" src="../assets/Search-user/js/index.js"></script>
   </body>
 </html>

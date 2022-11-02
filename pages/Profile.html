@@ -14,6 +14,9 @@
   </head>
 
   <body>
+    <div class="mask flex">
+      <div class="loader"></div>
+    </div>
     <header class="header flex">
       <div class="header-bar flex">
         <form action="Profile.html">
@@ -21,11 +24,13 @@
             <h1 class="header-bar-title">InstaLife</h1>
           </button>
         </form>
-        <time id="clock"></time>
+        <time class="clock"></time>
         <div class="header-bar-menu flex">
-          <button>
-            <img src="../assets/all-images/icons/house.svg" alt="Иконка-дом">
-          </button>
+          <form action="Profile.html">
+            <button>
+              <img src="" alt="Аватар пользователя" class="bar-menu-avatar">
+            </button>
+          </form> 
           <form action="Search-user.html">
             <button>
               <img src="../assets/all-images/icons/search.svg" alt="Иконка-поиск">
@@ -34,47 +39,50 @@
           <button>
             <img id="btnPublication" src="../assets/all-images/icons/plus.svg" alt="Иконка-плюс">
           </button>
-          <button>
+          <!-- В разработке -->
+          <!-- <button>
             <img src="../assets/all-images/icons/message.svg" alt="Иконка-сообщение">
-          </button>
-          <form action="Profile.html">
+          </button> -->
+          <form action="Authorization.html">
             <button>
-              <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="bar-menu-avatar">
+              <img id="btnTopExit" src="../assets/all-images/icons/house.svg" alt="Иконка-выход">
             </button>
-          </form>   
+          </form>  
         </div>
       </div>
     </header>
     <div class="aside-bar-menu">
-      <button>
-        <img src="../assets/all-images/icons/settings.svg" alt="Иконка-настройки">
-      </button>
+      <form action="Settings.html">
+        <button class="bar-menu-settings">
+          <img src="../assets/all-images/icons/settings.svg" alt="Иконка-настройки">
+        </button>
+      </form>
       <button class="bar-menu-name">
         <h2 class="menu-name-title">name</h2>
         <img src="../assets/all-images/icons/arrow.svg" alt="Иконка-стрелка">        
       </button>
-      <button>
+      <button class="bar-menu-heart">
         <img src="../assets/all-images/icons/heart.svg" alt="Иконка-сердце">
       </button>
     </div>
     <main class="page-profile">
       <div class="page-profile-info">
         <div class="profile-info-avatar flex">
-          <img src="../assets/all-images/img-avatar.jpg" alt="Аватар пользователя" class="info-avatar-img">  
+          <img src="" alt="Аватар пользователя" class="info-avatar-img">  
         </div>
         <div class="profile-info-description">
           <div class="info-description-name flex">
-            <h2>name</h2>
+            <h2 class="description-name-title">name</h2>
             <form action="Settings.html">
               <button class="description-name-btn">
                 <p>Редактировать профиль</p>
               </button>
             </form>
           </div>
-          <time id="clock-mobile"></time>
+          <time class="clock-mobile"></time>
           <div class="info-description-statistic flex">
             <div class="description-statistic-posts">
-              <span>0</span>
+              <span class="statistic-publications">0</span>
               <p>публикации</p>
             </div>
             <div class="description-statistic-followers">
@@ -88,7 +96,7 @@
           </div>
           <div class="info-description-aside">
             <h3 class="description-aside-title">Name Surname</h3>
-            <p>
+            <p class="aside-title-about">
               Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.
             </p>
             <a href="" class="description-aside-link">
@@ -98,18 +106,16 @@
         </div>
       </div>
       <div class="info-aside-mobile">
-        <h3 class="aside-mobile-title">Name Surname</h3>
-        <p>
+        <h3 class="description-aside-title">Name Surname</h3>
+        <p class="aside-title-about">
           Lorem Ipsum is simply dummy text of the printingand typesetting industry. Lorem Ipsum has been theindustry's standard dummy text.
         </p>
-        <a href="">
+        <a href="" class="description-aside-link">
           http://mysite.ru
         </a>
       </div>
       <form action="Settings.html">
-        <button class="profile-btn-edit">
-          <p>Редактировать профиль</p>
-        </button>
+        <button class="profile-btn-edit">Редактировать профиль</button>
       </form>
       <div class="profile-central-line">
         <div class="central-line-text flex">
@@ -129,7 +135,7 @@
           <img src="" alt="Фото" class="loading-wrap-img">
         </div>
         <div class="profile-loading-control flex">
-          <textarea placeholder="Ваш комментарий..." class="loading-control-comment"></textarea>
+          <textarea placeholder="Описание фото..." class="loading-control-comment"></textarea>
           <div class="loading-control-buttons">
             <button id="changePhoto" type="button" class="loading-control-btn">Сменить фото</button>
             <button id="addNow" type="submit" class="loading-control-btn">Добавить сейчас</button>
@@ -137,7 +143,7 @@
           </div>
           <div class="loading-control-form">
             <output for="counter" id="volume">Через 0 секунд</output>
-            <input id="counter" type="range" min="0" max="60" value="0" step="1" oninput="outputUpdate(value)">
+            <input id="counter" type="range" min="0" max="60" value="0" step="1">
             <button type="button" class="control-form-btn">Готово</button>
           </div>
         </div>
@@ -150,29 +156,35 @@
           <div class="post-description-bar flex">
             <div class="description-bar-action">
               <button id="action-btn-heart">
-                <!-- <img src="../assets/profile/images/icons/heart.svg" alt="Иконка-сердце"> -->
-                <svg width="19" height="19" viewBox="0 0 22 19" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd" d="M15.4917 0C12.2375 0 10.7708 2.42917 10.7708 2.42917C10.7708 2.42917 9.30417 0 6.05 0C2.70417 0 0 2.93333 0 6.55417C0 10.175 2.79583 12.2375 5.59167 14.7125C9.80833 18.4708 10.0833 18.7917 10.7708 18.7917C11.4583 18.7917 11.7333 18.4708 15.95 14.7125C18.7917 12.1917 21.5417 10.1292 21.5417 6.55417C21.5417 2.93333 18.8375 0 15.4917 0ZM15.0333 13.6583C12.5583 15.8583 11.2292 17.0958 10.7708 17.3708C10.3125 17.05 8.6625 15.5833 6.50833 13.6583C3.9875 11.4125 1.375 9.53333 1.375 6.50833C1.375 3.66667 3.48333 1.32917 6.05 1.32917C7.92917 1.32917 8.9375 2.24583 9.67083 3.25417C11.3208 5.59167 10.2208 5.59167 11.8708 3.25417C12.6042 2.24583 13.6125 1.32917 15.4917 1.32917C18.0583 1.32917 20.1667 3.66667 20.1667 6.50833C20.1667 9.57917 17.5542 11.4583 15.0333 13.6583Z" fill="#262626"/>
+                <img src="../assets/profile/images/icons/heart-post.svg" alt="Иконка-сердце">
                 </svg>
               </button>
-              <button>
+              <button id="action-btn-comment">
                 <img src="../assets/profile/images/icons/comment.svg" alt="Иконка-комментарий">
               </button>
-              <button>
+              <!-- В разработке -->
+              <!-- <button>
                 <img src="../assets/profile/images/icons/repost.svg" alt="Иконка-поделиться">
-              </button>
+              </button> -->
             </div>
-            <button>
+            <!-- В разработке -->
+            <!-- <button>
               <img src="../assets/profile/images/icons/bookmark.svg" alt="Иконка-закладка">
-            </button>
+            </button> -->
           </div>
           <output class="post-description-like">Нравится: 0</output>
           <p class="post-description-story"></p>
+          <p class="post-description-title">Комментарии:</p>
+          <div class="post-description-section"></div>
+          <form class="post-description-form">
+            <textarea placeholder="Ваш комментарий..." class="post-description-textarea"></textarea>
+            <button type="button" class="post-description-btn">Отправить</button>
+          </form>
         </div>
       </div>
     </div>
     <!-- Global scripts -->
-    <script src="../assets/index/js/index.js"></script>
+    <script src="../assets/all-scripts/index.js"></script>
     <!-- Profile scripts -->
     <script type="module" src="../assets/profile/js/index.js"></script>
   </body>

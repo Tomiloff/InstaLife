@@ -17,7 +17,11 @@
 .header-bar-menu {
   justify-content: space-between;
   align-items: center;
-  max-width: 198px;
+  max-width: 176px;
+}
+
+.header-bar-menu button :active {
+  width: 90%;
 }
 
 .bar-menu-avatar {
@@ -27,11 +31,16 @@
   border: 1px solid var(--grey);
 }
 
+.bar-menu-avatar:hover {
+  border-color: var(--black);
+  transition: 0.15s;
+}
+
 .aside-bar-menu {
   display: none;
 }
 
-#clock {
+.clock {
   font-size: 16px;
   font-weight: bold;
 }
@@ -87,7 +96,32 @@
     display: none;
   }
 
-  #clock {
+  .bar-menu-heart :active,
+  .bar-menu-settings :active {
+    width: 90%;
+  }
+
+  .bar-menu-name:hover:before,
+  .bar-menu-heart:hover:before {
+    content: "Раздел в разработке";
+    position: fixed;
+    border-radius: 3%;
+    padding: 10px;
+    opacity: 0.6;
+    color: var(--white);
+    background-color: var(--black);
+    top: 40px;
+  }
+
+  .bar-menu-name:hover:before {
+    right: 36%;
+  }
+
+  .bar-menu-heart:hover:before {
+    right: 5%;
+  }
+
+  .clock {
     display: none;
   }
   
