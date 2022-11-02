@@ -16,44 +16,44 @@ const passwordError = document.querySelector(".passwordError");
 const handlingLogin = () => {
   loginError.classList.add("loginErrorShow");
   loginInput.classList.add("inputInvalid");
+
+  e.preventDefault();
 };
 
 const handlingPassword = () => {
   loginInput.classList.add("inputValid");
   passwordError.classList.add("passwordErrorShow");
   passwordInput.classList.add("inputInvalid");
+
+  e.preventDefault();
 };
 
 validationForm.addEventListener( "submit", (e) => {
-  const login = loginInput.value.trim();
+  const loginUser = loginInput.value.trim();
   const password = passwordInput.value.trim();
   const accauntsStorage = JSON.parse( localStorage.getItem("listAccaunts") );
 
-  const foundUser = accauntsStorage.find( ({login}) => login === login);
+  const foundUser = accauntsStorage.find( ({login}) => login === loginUser);
 
-  if (!login) {
+  if (!loginUser) {
     loginError.innerText = "Введите логин";
 
     handlingLogin();
-    e.preventDefault();
   } 
   else if (!foundUser) {
     loginError.innerText = "Неверный логин";
 
     handlingLogin();
-    e.preventDefault();
   } 
   else if (!password) {
     passwordError.innerText = "Введите пароль";
 
     handlingPassword();
-    e.preventDefault();
   } 
   else if (foundUser.password !== password) {
     passwordError.innerText = "Неверный пароль";
 
     handlingPassword();
-    e.preventDefault();
   } 
   else {
     const activeUser = {
